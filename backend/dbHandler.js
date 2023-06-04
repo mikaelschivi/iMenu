@@ -60,6 +60,14 @@ export async function createDocument(collection, ItemDocument) {
 
 // busca o item pelo nome
 // muda as entries - deve ser um json
+// exemplo de updatedFields
+/*
+const updatedFields = {
+  nome: Xis Frango,
+  valor: 13.86,
+  Ingredientes: { pao, salada, tomate, frango }
+};
+*/
 export async function updateItemByName(collection, name, updatedFields) {
   let client;
   
