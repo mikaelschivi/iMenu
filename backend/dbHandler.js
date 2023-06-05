@@ -121,13 +121,14 @@ async function _delete(name, category) {
   let client;
   try{
     client = await connectToDB(connectionString);
-    const collection = getCollection(client, category);
+    const collection = await getCollection(client, category);
+
     // caso nao exista
     if (!await collection.findOne({ nome: name })) {
       console.log("error in delete for inexisting item:", name, "in", category);
       return false
     }
-    await collection.delete({ name });
+    await collection.deleteOne({ nome: name });
     console.log("delete query:", name, "in", category)
     return true;
 
