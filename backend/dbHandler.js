@@ -4,8 +4,7 @@ const { connect } = require('http2');
 
 // MongoDB connectionString
 // https://www.mongodb.com/docs/manual/reference/connection-string/
-const readFile = fs.readFileSync('./secret', 'utf-8').trim();
-const connectionString = readFile;
+const connectionString = fs.readFileSync('./secret', 'utf-8').trim();
 
 // Abre uma conexao com a cloud responsavel
 // pelo nosso banco de dados
