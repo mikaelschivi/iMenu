@@ -1,20 +1,33 @@
-import React from 'react';
-import {NavigationContainer, createNativeStackNavigator} from '@react-navigation/native';
+import React from "react";
+import { NavigationContainer} from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Cardapio from './Componentes/Cardapio';
+import Prato from './Componentes/Prato';
 
+const Stack = createNativeStackNavigator();
+
+function MyStack() {
+  return (
+      <Stack.Navigator initalRouteName="Cardapio">
+        <Stack.Screen 
+          name="Cardapio" 
+          component={Cardapio} 
+          options={{ headerShown: false}}>
+        </Stack.Screen>
+        <Stack.Screen 
+          name="Prato"
+          component={Prato}
+          options={{ statusBarColor:"#277C9D"}}>
+        </Stack.Screen> 
+      </Stack.Navigator>
+  );
+}
 export default function App() {
-  const Stack = createNativeStackNavigator();
-
   return (
     <NavigationContainer>
-      <Stack.Navigator initalRouteName = "Cardapio">
-        <Stack.Screen name = "Cardapio" component={Cardapio}
-        options={{
-          headerShown: false,
-        }}
-        />
-      </Stack.Navigator>
+      <MyStack/>
     </NavigationContainer>
   )
+
 
 }
