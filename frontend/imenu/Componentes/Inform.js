@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Text, Image} from "react-native";
+import React from "react";
+import { View, Image, Text } from "react-native";
 
 export default function Prato () {
     return (

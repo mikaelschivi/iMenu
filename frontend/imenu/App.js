@@ -3,6 +3,7 @@ import { NavigationContainer} from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Cardapio from './Componentes/Cardapio';
 import Prato from './Componentes/Prato';
+import Inform from './Componentes/Inform';
 
 const Stack = createNativeStackNavigator();
 
@@ -17,6 +18,11 @@ function MyStack() {
         <Stack.Screen 
           name="Prato"
           component={Prato}
+          options={{ statusBarColor:"#277C9D"}}>
+        </Stack.Screen> 
+        <Stack.Screen 
+          name="Inform"
+          component={Inform}
           options={{ statusBarColor:"#277C9D"}}>
         </Stack.Screen> 
       </Stack.Navigator>

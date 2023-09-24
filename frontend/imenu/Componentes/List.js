@@ -18,7 +18,7 @@ export default function List(props,{navigation}){
                 />
                 <View style={styles.funcionalidades}>
                     <TouchableOpacity 
-                        onPress={() => alert('Informação não disponível')}>
+                        onPress={ () => navigation.navigate('Prato')}>
                         <Image 
                         source={{uri: 'https://cdn-icons-png.flaticon.com/512/3444/3444393.png'}}
                         style={{width:30, height:30, borderRadius:15}}

@@ -59,21 +59,17 @@ export default function Cardapio({navigation}) {
         <TouchableOpacity 
           onPress={() => navigation.navigate('Prato')}>
           <Image style={{width:50,height:50,marginTop:20,marginRight:10}}
-          source={{uri:"https://img2.gratispng.com/20180408/jfw/kisspng-tableware-plate-platter-tray-kitchen-tableware-5aca2df992d172.3316237515231994816014.jpg"}}/> 
+          source={{uri:"https://w7.pngwing.com/pngs/218/469/png-transparent-plate-dish-kitchen-white-porcelain-thumbnail.png"}}/>
           </TouchableOpacity>
       </ImageBackground>
+      
       {/* Variedade de opcoes */}
       <View style={{width:414 , height: 49,alignItems:"center", backgroundColor: "#277C9D"}}>
-        <Text style={{fontSize:24, color:"white",alignItems:"center"}}>Todos hamburguers Pizzas Bebidas</Text>
+        
+          <Text style={{fontSize:24, color:"white",alignItems:"center"}}>Todos Hamburguers Pizzas Bebidas</Text>
+        
       </View>
 
-        
-      
-        
-      {/* Subitem Pizzas */}
-      {/* <View style={{width:414,height:49, backgroundColor: "#90B7C1", alignItems:"flex-start"}}>
-        <Text style={{fontSize:24, color:"black",marginLeft:30}}>Pizzas</Text>
-      </View> */}
       {/* View dos itens disponiveis */}
       <View style={{flex:1,width:400,height:49, backgroundColor:"white"}}>
         <ScrollView style={{flex:1,backgroundColor:"#90B7C1", paddingTop:10}}>
