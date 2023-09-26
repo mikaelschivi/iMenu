@@ -5,6 +5,7 @@ const CONNECTION_STRING = process.env.CONNECTION_STRING;
 
 module.exports = async() => {
     try{
+        console.log('connecting to database...');
         await mongoose.connect( CONNECTION_STRING, {
             useNewUrlParser: true
         });

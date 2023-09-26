@@ -1,11 +1,11 @@
 const express = require('express');
+const expressApp = require('./express-app');
 const { databaseConnection } = require('./database');
 const dotenv = require('dotenv').config();
-const expressApp = require('./express-app');
-const PORT = process.env.PORT || 3001;
+
+const PORT = process.env.PORT || 8000;
 
 const StartServer = async() => {
-
   const app = express();
   
   await databaseConnection();
@@ -20,5 +20,4 @@ const StartServer = async() => {
     process.exit();
   })
 }
-
 StartServer();
