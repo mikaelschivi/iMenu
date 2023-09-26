@@ -1,16 +1,12 @@
 const mongoose = require('mongoose');
 
 const modelSchema = new mongoose.Schema({
-    name: { 
+    items: { 
         type: String,
         required: true
      },
     table: {
         type: Number,
-        required: true
-    },
-    ingredients: {
-        type:  String, 
         required: true
     }
 });
