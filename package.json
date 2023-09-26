@@ -1,5 +1,20 @@
 {
   "dependencies": {
-    "mongodb": "^5.6.0"
-  }
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongodb": "^5.6.0",
+    "mongoose": "^7.5.3",
+    "nodemon": "^3.0.1"
+  },
+  "name": "imenu",
+  "description": "Cardápio mobile de fácil gerenciamento. Aplicação mobile  para apresentar um cardápio de lanchonete de forma online e com acompanhamento de pedidos em tempo real. O cardápio é gerenciado por uma database MongoDB no-SQL, na qual mudanças refletem nos dados do cardápio/pedido.",
+  "version": "1.0.0",
+  "main": "./backend/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon ./backend/server.js"
+  },
+  "author": "",
+  "license": "ISC"
 }
