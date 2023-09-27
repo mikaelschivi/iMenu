@@ -10,12 +10,12 @@ module.exports = (app) => {
     //   "ingrendients": ""
     // }
     app.post('/api/createItem', async (req, res) => {
-        console.log({ status: 'item created',
-                      info: req.body
-                    });
         const item = new Item(req.body);
         try{
             await item.save();
+            console.log({ status: 'item created',
+                          info: req.body
+                        });
             res.status(201).json({item});
         } catch(err){
             res.status(400).json(err);
@@ -23,6 +23,7 @@ module.exports = (app) => {
         }
     });
     
+    // busca por todos os items no banco de dados
     app.get('/api/findAllItems', async (req, res) => {
         try{
             const result = await Item.find();
@@ -35,6 +36,7 @@ module.exports = (app) => {
         }
     });
     
+    // busca por um item pelo seu id no banco de dados
     app.get('/api/findItemById/:id', async (req, res) => {
         try{
             const result = await Item.findById(req.params.id);
@@ -49,4 +51,22 @@ module.exports = (app) => {
             console.log(err);
         }    
     });
+
+    app.delete('/api/deleteItemById/:id', async (req, res) => {
+        try{
+            const result = await Item.findByIdAndDelete(req.params.id)
+            if (!result){
+                res.send(400).send({ error: 'item not found' });
+            };
+            console.log({ status: 'item deleted',
+                          info: result
+            });
+            res.status(200).json({
+                "deleted item": result
+            });
+        } catch(err){
+            res.status(401).send("error");
+            console.log(err);
+        }
+    });        
 }
