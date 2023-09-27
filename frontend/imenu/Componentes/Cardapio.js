@@ -1,7 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View,TouchableOpacity, Image,FlatList, ScrollView, Button, ImageBackground} from 'react-native';
+import { StyleSheet, Text, View,TouchableOpacity, Image,FlatList, ScrollView, Button, ImageBackground, TextInput} from 'react-native';
 import { useEffect,useState } from 'react';
 import List from "./List";
+import api from './src/services/api'
 
 export default function Cardapio({navigation}) {
 
@@ -51,9 +52,33 @@ export default function Cardapio({navigation}) {
     }]
 
 
+  const [itens, setItens] = useState([])
+  const [amount, setAmount] = useState([])
+
+  useEffect( () => {
+    //Descrevendo qual rota 
+    api.get('/item').then( (response) => {
+      console.log(response.data)
+  
+      //armazena os dados do back
+      setItens(response.data)  
+    }) 
+  }, [])
+
+  function newRequest() {
+    api
+      //posta a quantia de itens solicitados
+      .post('/item',{ 
+        amount,
+      })
+      .then((response) => {
+        console.log(response)
+      })
+  }
+
   return (
     <View style={{flex:1, alignItems:"center"}}>   
-      {/* View da imagem de cabecalho */}
+      {/* // View da imagem de cabecalho */}
       <ImageBackground source={{uri:"https://moinhoglobo.com.br/wp-content/uploads/2019/05/16-hamburguer.jpeg"}}
          style={{width:414,height:150, alignItems:"flex-end", backgroundColor: '#90B7C1'}}>
         <TouchableOpacity 
@@ -63,14 +88,36 @@ export default function Cardapio({navigation}) {
           </TouchableOpacity>
       </ImageBackground>
       
-      {/* Variedade de opcoes */}
+
+
+
+
+      // Testando a rota de itens do DB
+      { itens.map( iten => (
+        <Text key={iten.id}>Nome: {iten.name}</Text>
+        //<Text>Descricao: {iten.descrição}</Text>
+        //<Text>Preco: {iten.preco}</Text>
+      ))}
+
+      //Button para adicionar algo ao DB
+      <TextInput
+        placeholder='Amount'
+        onChangeText={(event) => setAmount(event)}
+      />
+      <TouchableOpacity onPress={newRequest}>
+        <Text>adicionar</Text>
+      </TouchableOpacity>
+
+
+
+
+      {/* // Variedade de opcoes */}
       <View style={{width:414 , height: 49,alignItems:"center", backgroundColor: "#277C9D"}}>
         
           <Text style={{fontSize:24, color:"white",alignItems:"center"}}>Todos Hamburguers Pizzas Bebidas</Text>
-        
       </View>
 
-      {/* View dos itens disponiveis */}
+      {/* //View dos itens disponiveis  */}
       <View style={{flex:1,width:400,height:49, backgroundColor:"white"}}>
         <ScrollView style={{flex:1,backgroundColor:"#90B7C1", paddingTop:10}}>
           <Text style={styles.titulo}>Hamburguers</Text>
