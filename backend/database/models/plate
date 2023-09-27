@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const modelSchema = new mongoose.Schema({
     items: { 
-        type: String,
+        type: Array,
         required: true
      },
     table: {
