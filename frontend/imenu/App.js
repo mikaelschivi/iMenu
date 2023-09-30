@@ -4,12 +4,18 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Cardapio from './Componentes/Cardapio';
 import Prato from './Componentes/Prato';
 import Inform from './Componentes/Inform';
+import Adm from './Componentes/Adm';
 
 const Stack = createNativeStackNavigator();
 
 function MyStack() {
   return (
-      <Stack.Navigator initalRouteName="Cardapio">
+      <Stack.Navigator initalRouteName="Adm">
+        <Stack.Screen 
+          name="Adm" 
+          component={Adm} 
+          options={{ headerShown: false}}>
+        </Stack.Screen>
         <Stack.Screen 
           name="Cardapio" 
           component={Cardapio} 

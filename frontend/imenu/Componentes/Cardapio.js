@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, Text, View,TouchableOpacity, Image,FlatList, ScrollView, Button, ImageBackground, TextInput} from 'react-native';
 import { useEffect,useState } from 'react';
 import List from "./List";
-import api from './src/services/api'
 
 export default function Cardapio({navigation}) {
 
@@ -51,31 +50,7 @@ export default function Cardapio({navigation}) {
       img:"https://giassi.vtexassets.com/arquivos/ids/635065/Refrigerante-Guarana-Antarctica-Garrafa-2l.png?v=638203846615870000"
     }]
 
-
-  const [itens, setItens] = useState([])
-  const [amount, setAmount] = useState([])
-
-  useEffect( () => {
-    //Descrevendo qual rota 
-    api.get('/item').then( (response) => {
-      console.log(response.data)
-  
-      //armazena os dados do back
-      setItens(response.data)  
-    }) 
-  }, [])
-
-  function newRequest() {
-    api
-      //posta a quantia de itens solicitados
-      .post('/item',{ 
-        amount,
-      })
-      .then((response) => {
-        console.log(response)
-      })
-  }
-
+    
   return (
     <View style={{flex:1, alignItems:"center"}}>   
       {/* // View da imagem de cabecalho */}
@@ -88,29 +63,6 @@ export default function Cardapio({navigation}) {
           </TouchableOpacity>
       </ImageBackground>
       
-
-
-
-
-      // Testando a rota de itens do DB
-      { itens.map( iten => (
-        <Text key={iten.id}>Nome: {iten.name}</Text>
-        //<Text>Descricao: {iten.descrição}</Text>
-        //<Text>Preco: {iten.preco}</Text>
-      ))}
-
-      //Button para adicionar algo ao DB
-      <TextInput
-        placeholder='Amount'
-        onChangeText={(event) => setAmount(event)}
-      />
-      <TouchableOpacity onPress={newRequest}>
-        <Text>adicionar</Text>
-      </TouchableOpacity>
-
-
-
-
       {/* // Variedade de opcoes */}
       <View style={{width:414 , height: 49,alignItems:"center", backgroundColor: "#277C9D"}}>
         
