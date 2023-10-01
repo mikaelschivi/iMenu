@@ -1,9 +1,13 @@
 import axios from 'axios';
 
-const api = axios.create({
-  //local onde esta rodando a aplicacao
-  baseURL: 'http://localhost:3000' 
-});
+// const CONNECTION_STRING = process.env.CONNECTION_STRING;
 
 
-export default api
+// export async function getRequest() {
+//   const response = await axios({
+//     method: "GET",
+//     url: `${CONNECTION_STRING}/api/findAllItems`
+//   })
+  
+//   return response.data;
+// }

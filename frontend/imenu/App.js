@@ -1,10 +1,10 @@
 import React from "react";
 import { NavigationContainer} from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Cardapio from './Componentes/Cardapio';
-import Prato from './Componentes/Prato';
-import Inform from './Componentes/Inform';
-import Adm from './Componentes/Adm';
+import Cardapio from './src/Componentes/Cardapio';
+import Prato from './src/Componentes/Prato';
+import Inform from './src/Componentes/Inform';
+import Adm from './src/Componentes/Adm';
 
 const Stack = createNativeStackNavigator();
 
@@ -14,7 +14,8 @@ function MyStack() {
         <Stack.Screen 
           name="Adm" 
           component={Adm} 
-          options={{ headerShown: false}}>
+          options={{ headerShown: false
+                  ,statusBarColor:"#277C9D"}}>
         </Stack.Screen>
         <Stack.Screen 
           name="Cardapio" 

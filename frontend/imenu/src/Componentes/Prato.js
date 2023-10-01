@@ -6,6 +6,7 @@ export default function Prato () {
         <View style={{alignItems: "center", marginTop:'60%'}}>      
             <View>
                 <Text style={{fontSize:18}}>Aqui ficaram os pedidos efetuados</Text>
+                
             </View>
         </View>
     );

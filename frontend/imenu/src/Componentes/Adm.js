@@ -1,6 +1,7 @@
 import React from "react";
-import { View, Text, TextInput} from "react-native";
+import { View, Text, TouchableOpacity, TextInput} from "react-native";
 import { useState, useEffect } from "react";
+//import {getRequest} from "../services/api";
 
 export default function Admin() {
 
@@ -44,15 +45,26 @@ export default function Admin() {
             {/* { itens.map( iten => (
                 <Text key={iten.id}>Nome: {iten.name}</Text>
             ))} */}
+            
+    {/* <TouchableOpacity onPress={getRequest}>
+            <Text>Get function</Text>
+        </TouchableOpacity> */}
 
 
     return (
-        <View style={{flex:1, alignItems:"center", justifyContent:"center"}}>
-            
-            <Text>Bem vindo como administrador</Text>
-
-            <TextInput placeholder="Seu nome" required></TextInput>
-            
+        <View style={{alignItems: "center", marginTop:'60%'}}>
+            <View>
+                <Text style={{fontSize:18}}>Bem vindo administrador</Text>
+                <TextInput>Nome</TextInput>
+                <TextInput>Descrição</TextInput>
+                <TextInput>Preco</TextInput>
+                <TouchableOpacity >
+                    <Text>Adicionar</Text>
+                </TouchableOpacity>
+            </View>
         </View>
+       
+        
     )
+
 }
