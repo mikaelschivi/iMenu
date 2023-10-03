@@ -65,8 +65,7 @@ export default function Cardapio({navigation}) {
       
       {/* // Variedade de opcoes */}
       <View style={{width:414 , height: 49,alignItems:"center", backgroundColor: "#277C9D"}}>
-        
-          <Text style={{fontSize:24, color:"white",alignItems:"center"}}>Todos Hamburguers Pizzas Bebidas</Text>
+          <Text style={styles.topico}>Todos Hamburguers Pizzas Bebidas</Text>
       </View>
 
       {/* //View dos itens disponiveis  */}
@@ -103,5 +102,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginLeft: 17,
     fontSize: 18,
+  },
+  topico: {
+    fontSize:24, 
+    color:"white",
+    alignItems:"center"
   }
 })
