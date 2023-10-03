@@ -5,7 +5,7 @@ const CONNECTION_STRING = process.env.CONNECTION_STRING;
 
 
 
-export async function getRequest() {
+export async function getFunction() {
 
     const [name, setName] = useState('')
 
@@ -21,3 +21,21 @@ export async function getRequest() {
 
     return;
 }
+
+export async function postFunction() {
+
+    const [name, setName] = useState('')
+
+    const reponse = await axios({
+        method: "POST",
+        url: `${CONNECTION_STRING}/api/createItem`
+    })
+    .then((response) => {
+        console.log(response.data)
+        setName(response.data)
+    })
+    
+
+    return;
+}
+
