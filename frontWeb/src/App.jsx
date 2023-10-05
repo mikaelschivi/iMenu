@@ -11,7 +11,12 @@ function App() {
 
   const postFunction = (e) => {
     e.preventDefault()
-    axios.post('https://localhost:3000/api/createItem',{name, price, ingredients})
+    
+    axios.post('https://localhost:3000/api/createItem', {
+      name: name, 
+      price: price,
+      ingredients: {ingredients}
+    })
     .then(result => console.log(result))
     .catch(err => console.log(err))
   }
@@ -28,6 +33,22 @@ function App() {
         name='email'
         className='form-control rounded-0 w-30'
         onChange={(e) => setName(e.target.value)}
+      />
+      <input 
+        type='text' 
+        placeholder='Enter ingridients' 
+        autoComplete='off' 
+        name='email'
+        className='form-control rounded-0 w-30'
+        onChange={(e) => setIngredients(e.target.value)}
+      />
+      <input 
+        type='float' 
+        placeholder='Enter price' 
+        autoComplete='off' 
+        name='email'
+        className='form-control rounded-0 w-30'
+        onChange={(e) => setPrice(e.target.value)}
       />
       <button type="submit" className='btn btn-sucess w-100 rounded-0'>
           Register

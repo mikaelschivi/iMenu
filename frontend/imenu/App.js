@@ -10,7 +10,7 @@ const Stack = createNativeStackNavigator();
 
 function MyStack() {
   return (
-      <Stack.Navigator initalRouteName="Cardapio">
+      <Stack.Navigator initalRouteName="Adm">
         <Stack.Screen 
           name="Adm" 
           component={Adm} 

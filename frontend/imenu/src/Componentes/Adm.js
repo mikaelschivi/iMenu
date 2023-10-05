@@ -1,17 +1,31 @@
 import React from "react";
 import { View, Text, TouchableOpacity, TextInput, StyleSheet, } from "react-native";
 import { useState, useEffect } from "react";
-import {getFunction, postFunction} from '../services/api';
+//import {getFunction, postFunction} from '../services/api';
 
 export default function Admin() {
 
 
-    const [name, setName] = useState('')
+    const [name,setName] = useState()
+    const [price,setPrice] = useState()
+    const [ingredients,setIngredients] = useState()
+
+    const postFunction = (e) => {
+        e.preventDefault()
+        
+        axios.post('https://localhost:3000/api/createItem', {
+          name: name, 
+          price: price,
+          ingredients: {ingredients}
+        })
+        .then(result => console.log(result))
+        .catch(err => console.log(err))
+      }
 
     return (
         <View style={{flex:1,backgroundColor:"#90B7C1" }}>
             <View style={styles.header}>
-                <Text style={{fontSize:18,color:"white"}}>         Admin's screen                   iMenu</Text>
+                <Text style={{fontSize:18,color:"white"}}>Admin's Screen</Text>
             </View>
             <View style={styles.fundo}>
                 <View style={styles.preencher}>
@@ -24,7 +38,7 @@ export default function Admin() {
                     <TextInput style={styles.texto_p}>Price</TextInput>
                 </View>
                 <View style={{alignItems:"center"}}>
-                <TouchableOpacity style={styles.adicionar} >
+                <TouchableOpacity style={styles.adicionar} onPress={postFunction} >
                     <Text style={styles.texto_a}>Add</Text>
                 </TouchableOpacity>
                 </View>
