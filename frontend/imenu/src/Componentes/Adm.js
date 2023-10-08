@@ -1,26 +1,47 @@
 import React from "react";
 import { View, Text, TouchableOpacity, TextInput, StyleSheet, } from "react-native";
 import { useState, useEffect } from "react";
-import axios from "axios"
+import api from "../services/api"
+import axios from "axios";
 
 
 export default function Admin() {
-
 
     const [name,setName] = useState('')
     const [price,setPrice] = useState('')
     const [ingredients,setIngredients] = useState('')
 
-    const postFunction = (e) => {
-        e.preventDefault()
-        
-        axios.post('http://localhost:3000/api/createItem', {
-          name: name, 
-          price: price,
-          ingredients: {ingredients}
+    // Find Item by ID
+    async function getF(){
+        const response = await api.get('/api/findItemById/651a0776dd20690d6d98555b/')
+        setName(response.data.name)
+        setIngredients(response.data.ingredients)
+        setPrice(response.data.price)
+    }
+
+    //another get function
+    useEffect(() => {
+        api.get('/api/findItemById/651a0776dd20690d6d98555b')
+        .then(({data}) => {
+            setName(data)
+        });
+    }, [])
+
+    //post function
+    async function postF () {
+        const Data = {
+            name: name, 
+            price: price,
+            ingredients: ingredients
+        }
+        axios.post({
+            metlhod: 'POST',
+            url: 'http://localhost:3000/api/createItem', 
+            data: Data,
         })
-        .then(result => console.log(result))
-        .catch(err => console.log(err))
+        .then(function(response){
+            console.log(response.data)
+        })
       }
 
     return (
@@ -46,7 +67,7 @@ export default function Admin() {
                     placeholder="Price"
                     keyboardType="numeric"/>
                 <TouchableOpacity style={styles.add} 
-                    onPress={postFunction} >
+                    onPress={postF} >
                     <Text style={styles.text_a}>Add</Text>
                 </TouchableOpacity>
 
@@ -58,7 +79,6 @@ export default function Admin() {
                     <Text>O ingred.:  {ingredients}</Text>
                     <Text>O preco:     {price}</Text>
                 </View>
-               
             </View>
         </View>
     )
@@ -99,3 +119,17 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     }
   })
+
+
+//   <TouchableOpacity style={styles.add} 
+//   onPress={getF} >
+//   <Text style={styles.text_a}>View</Text>
+// </TouchableOpacity>
+
+// <Text></Text>
+// <Text>View para ver os valores</Text>
+// <Text></Text>
+// <Text>O nome:     {name}</Text>
+// <Text>O ingred.:  </Text>
+// <Text>O preco:     {price}</Text>
+
