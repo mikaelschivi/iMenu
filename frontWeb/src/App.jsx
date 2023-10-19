@@ -12,7 +12,7 @@ function App() {
   const postFunction = (e) => {
     e.preventDefault()
     
-    axios.post('https://localhost:3000/api/createItem', {
+    axios.post('http://localhost:3000/api/createItem', {
       name: name, 
       price: price,
       ingredients: {ingredients}

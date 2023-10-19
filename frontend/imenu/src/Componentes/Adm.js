@@ -2,14 +2,23 @@ import React from "react";
 import { View, Text, TouchableOpacity, TextInput, StyleSheet, } from "react-native";
 import axios from "axios";
 import { useState, useEffect } from "react";
-//import {getFunction, postFunction} from '../services/api';
+import api from "../services/api"
+import axios from "axios";
+
 
 export default function Admin() {
 
+    const [name,setName] = useState('')
+    const [price,setPrice] = useState('')
+    const [ingredients,setIngredients] = useState('')
 
-    const [name,setName] = useState()
-    const [price,setPrice] = useState()
-    const [ingredients,setIngredients] = useState()
+    // Find Item by ID
+    async function getF(){
+        const response = await api.get('/api/findItemById/651a0776dd20690d6d98555b/')
+        setName(response.data.name)
+        setIngredients(response.data.ingredients)
+        setPrice(response.data.price)
+    }
 
     const postFunction = (e) => {
         e.preventDefault()
@@ -33,7 +42,32 @@ export default function Admin() {
           .catch(function (error) {
             console.log(error);
           });
-      }
+        
+          //another get function
+        useEffect(() => {
+            api.get('/api/findItemById/651a0776dd20690d6d98555b')
+            .then(({data}) => {
+                setName(data)
+            });
+        }, [])
+
+        //post function
+        async function postF () {
+            const Data = {
+                name: name, 
+                price: price,
+                ingredients: ingredients
+            }
+            axios.post({
+                metlhod: 'POST',
+                url: 'http://localhost:3000/api/createItem', 
+                data: Data,
+            })
+            .then(function(response){
+                console.log(response.data)
+            })
+        }
+    }
 
     return (
         <View style={{flex:1,backgroundColor:"#90B7C1" }}>
@@ -57,11 +91,41 @@ export default function Admin() {
                 </TouchableOpacity>
 
                 <Text value={name}></Text>
+                <TextInput 
+                    style={styles.textInput} 
+                    placeholder="Name" 
+                    onChangeText={setName}
+                    value={name}/>
+                <TextInput 
+                    style={styles.textInput}
+                    placeholder="Ingridients"
+                    onChangeText={setIngredients}
+                    value={ingredients}/>
+                <TextInput 
+                    style={styles.textInput} 
+                    onChangeText={setPrice}
+                    value={price}
+                    placeholder="Price"
+                    keyboardType="numeric"/>
+                <TouchableOpacity style={styles.add} 
+                    onPress={postF} >
+                    <Text style={styles.text_a}>Add</Text>
+                </TouchableOpacity>
+
+                <View style={{justifyContent:"center",alignContent:"center"}}>
+                    <Text></Text>
+                    <Text>View para ver os valores</Text>
+                    <Text></Text>
+                    <Text>O nome:     {name}</Text>
+                    <Text>O ingred.:  {ingredients}</Text>
+                    <Text>O preco:     {price}</Text>
                 </View>
+            </View>
             </View>
         </View>
     )
 }
+
 
 const styles = StyleSheet.create({
     header: {
@@ -72,21 +136,20 @@ const styles = StyleSheet.create({
         borderRadius:5,
     },
     fundo:{
-        //backgroundColor:"#90B7C1",
         marginLeft:40,
         marginRight:40,
+        alignItems: "center",
     },
-    preencher:{
-      marginTop:10,
-      backgroundColor: "#277C9D",
-      borderRadius:10,
-      height: 35,
-    },
-    texto_p: {
+    textInput: {
         marginLeft:20,
+        marginTop:10,
         fontSize: 20,
+        borderRadius:10,
+        backgroundColor: "#277C9D",
+        height: 35,
+        width:300,
     },
-    adicionar: {
+    add: {
         backgroundColor: "#009427",
         marginTop: 15,
         width:80,
@@ -95,19 +158,7 @@ const styles = StyleSheet.create({
         justifyContent:"center",
         alignItems: "center",
     },
-    texto_a:{
+    text_a:{
         fontWeight: 'bold',
     }
   })
-
-// {/* <View style={{alignItems: "center", justifyContent:"center",}}>
-// <Text>Adicionar</Text>
-
-// {/* <TextInput type="name" onChange={getRequest} placeholder="Name" name="" id=""/>
-// <TextInput type="adicionar" onClick={getRequest} /> */}
-
-// <TouchableOpacity onPress={getRequest}>
-//     <Text >Add</Text>
-// </TouchableOpacity>
-// <Text></Text>
-// </View> */}
