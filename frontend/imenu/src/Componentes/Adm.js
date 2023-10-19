@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, TouchableOpacity, TextInput, StyleSheet, } from "react-native";
+import axios from "axios";
 import { useState, useEffect } from "react";
 //import {getFunction, postFunction} from '../services/api';
 
@@ -13,13 +14,25 @@ export default function Admin() {
     const postFunction = (e) => {
         e.preventDefault()
         
-        axios.post('https://localhost:3000/api/createItem', {
-          name: name, 
-          price: price,
-          ingredients: {ingredients}
-        })
-        .then(result => console.log(result))
-        .catch(err => console.log(err))
+        // axios.post('http://localhost:3000/api/createItem', {
+        //   name: name, 
+        //   price: price,
+        //   ingredients: {ingredients}
+        // })
+        // .then(result => console.log(result))
+        // .catch(err => console.log(err))
+
+        axios.post('http://localhost:3000/api/createItem', {
+            name: name, 
+            price: price,
+            ingredients: {ingredients}
+          })
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
       }
 
     return (
@@ -29,18 +42,21 @@ export default function Admin() {
             </View>
             <View style={styles.fundo}>
                 <View style={styles.preencher}>
-                    <TextInput style={styles.texto_p}>Name</TextInput>
+                    <TextInput value={name} style={styles.texto_p} placeholder="Name"></TextInput>
+                    
                 </View>
                 <View style={styles.preencher}>
-                    <TextInput style={styles.texto_p}>Descrition</TextInput>
+                    <TextInput value={ingredients} style={styles.texto_p} placeholder="Descripition"></TextInput>
                 </View>
                 <View style={styles.preencher}>
-                    <TextInput style={styles.texto_p}>Price</TextInput>
+                    <TextInput value={price} style={styles.texto_p} placeholder="Price"></TextInput>
                 </View>
                 <View style={{alignItems:"center"}}>
                 <TouchableOpacity style={styles.adicionar} onPress={postFunction} >
                     <Text style={styles.texto_a}>Add</Text>
                 </TouchableOpacity>
+
+                <Text value={name}></Text>
                 </View>
             </View>
         </View>
