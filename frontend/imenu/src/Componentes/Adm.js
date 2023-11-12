@@ -1,95 +1,53 @@
 import React from "react";
-import { View, Text, TouchableOpacity, TextInput, StyleSheet, } from "react-native";
-import axios from "axios";
+import { View, Text, TouchableOpacity, TextInput, StyleSheet, Button, } from "react-native";
 import { useState, useEffect } from "react";
-import api from "../services/api"
-import axios from "axios";
-
 
 export default function Admin() {
 
     const [name,setName] = useState('')
     const [price,setPrice] = useState('')
-    const [ingredients,setIngredients] = useState('')
+    const [ingredients,setIngredients] = useState([''])
 
-    // Find Item by ID
-    async function getF(){
-        const response = await api.get('/api/findItemById/651a0776dd20690d6d98555b/')
-        setName(response.data.name)
-        setIngredients(response.data.ingredients)
-        setPrice(response.data.price)
-    }
+    const [data,setData] = useState([])
 
-    const postFunction = (e) => {
-        e.preventDefault()
-        
-        // axios.post('http://localhost:3000/api/createItem', {
-        //   name: name, 
-        //   price: price,
-        //   ingredients: {ingredients}
-        // })
-        // .then(result => console.log(result))
-        // .catch(err => console.log(err))
-
-        axios.post('http://localhost:3000/api/createItem', {
-            name: name, 
-            price: price,
-            ingredients: {ingredients}
-          })
-          .then(function (response) {
-            console.log(response);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
-        
-          //another get function
-        useEffect(() => {
-            api.get('/api/findItemById/651a0776dd20690d6d98555b')
-            .then(({data}) => {
-                setName(data)
-            });
-        }, [])
-
-        //post function
-        async function postF () {
-            const Data = {
-                name: name, 
-                price: price,
-                ingredients: ingredients
+    //Get com fetch
+    useEffect(() => {
+        const fetchData = async () => {
+          const response = await fetch("http://192.168.42.175:3000/api/findItemById/651a0776dd20690d6d98555b/")
+            try {
+              const responseJson = await response.json()
+              setName(responseJson.user.name)
+              setPrice(responseJson.user.price)
+              setIngredients(responseJson.user.ingredients)
+              setData(responseJson);
             }
-            axios.post({
-                metlhod: 'POST',
-                url: 'http://localhost:3000/api/createItem', 
-                data: Data,
-            })
-            .then(function(response){
-                console.log(response.data)
-            })
+            catch (error) {
+              console.log(error)
+            }
         }
-    }
+          fetchData();
+      }, []);
+   
+
+    // const axiosPost = (e) => {
+    //     e.preventDefault()
+
+    //     axios.post('http://localhost:3000/api/createItem', data)
+    //       .then((response) => {
+    //         console.log(response);
+    //       })
+    //       .catch((error) => {
+    //         console.log(error);
+    //       });
+        
+    //     setName('')
+    //     setPrice('')
+    //     setIngredients('')
+    // }
 
     return (
         <View style={{flex:1,backgroundColor:"#90B7C1" }}>
-            <View style={styles.header}>
-                <Text style={{fontSize:18,color:"white"}}>Admin's Screen</Text>
-            </View>
             <View style={styles.fundo}>
-                <View style={styles.preencher}>
-                    <TextInput value={name} style={styles.texto_p} placeholder="Name"></TextInput>
-                    
-                </View>
-                <View style={styles.preencher}>
-                    <TextInput value={ingredients} style={styles.texto_p} placeholder="Descripition"></TextInput>
-                </View>
-                <View style={styles.preencher}>
-                    <TextInput value={price} style={styles.texto_p} placeholder="Price"></TextInput>
-                </View>
-                <View style={{alignItems:"center"}}>
-                <TouchableOpacity style={styles.adicionar} onPress={postFunction} >
-                    <Text style={styles.texto_a}>Add</Text>
-                </TouchableOpacity>
-
                 <Text value={name}></Text>
                 <TextInput 
                     style={styles.textInput} 
@@ -107,22 +65,19 @@ export default function Admin() {
                     value={price}
                     placeholder="Price"
                     keyboardType="numeric"/>
-                <TouchableOpacity style={styles.add} 
-                    onPress={postF} >
+                <TouchableOpacity style={styles.add}>
                     <Text style={styles.text_a}>Add</Text>
                 </TouchableOpacity>
 
                 <View style={{justifyContent:"center",alignContent:"center"}}>
                     <Text></Text>
                     <Text>View para ver os valores</Text>
-                    <Text></Text>
                     <Text>O nome:     {name}</Text>
                     <Text>O ingred.:  {ingredients}</Text>
                     <Text>O preco:     {price}</Text>
                 </View>
+                </View>
             </View>
-            </View>
-        </View>
     )
 }
 
@@ -141,24 +96,24 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     textInput: {
-        marginLeft:20,
         marginTop:10,
         fontSize: 20,
         borderRadius:10,
         backgroundColor: "#277C9D",
-        height: 35,
+        height: 50,
         width:300,
     },
     add: {
         backgroundColor: "#009427",
         marginTop: 15,
-        width:80,
-        height:40,
+        width:100,
+        height:60,
         borderRadius: 20,
         justifyContent:"center",
         alignItems: "center",
     },
     text_a:{
         fontWeight: 'bold',
+        fontSize: 20,
     }
   })

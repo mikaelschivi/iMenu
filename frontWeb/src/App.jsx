@@ -1,59 +1,65 @@
-import { useState } from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import axios from "axios"
+import { useState, useEffect} from 'react'
 
 
 function App() {
 
+  //const [name,setName] = useState()
   const [name,setName] = useState()
   const [price,setPrice] = useState()
   const [ingredients,setIngredients] = useState()
+  
+  const [data,setData] = useState([])
 
-  const postFunction = (e) => {
-    e.preventDefault()
-    
-    axios.post('http://localhost:3000/api/createItem', {
-      name: name, 
-      price: price,
-      ingredients: {ingredients}
-    })
-    .then(result => console.log(result))
-    .catch(err => console.log(err))
-  }
+  //Get using ID
+  //findItemById/651a0776dd20690d6d98555b/
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const response = await fetch("http://localhost:3000/api/findItemById/65428664b0489c136bddc156/")
+  //       try {
+  //         const responseJson = await response.json()
+  //         console.log(responseJson)
+  //         setName(responseJson.user.name)
+  //         setPrice(responseJson.user.price)
+  //         setIngredients(responseJson.user.ingredients)
+  //         setData(responseJson);
+  //       }
+  //       catch (error) {
+  //         console.log(error)
+  //       }
+  //   }
+  //     fetchData();
+  // }, []);
+
+
+  //Get using ID
+  //findAllItems
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch("http://localhost:3000/api/findAllItems/")
+        try {
+          const responseJson = await response.json()
+          console.log(responseJson.items)
+          console.log(responseJson.items.length)
+          //setName(responseJson.user.name)
+          //setPrice(responseJson.user.price)
+          //setIngredients(responseJson.user.ingredients)
+          setData(responseJson.items);
+        }
+        catch (error) {
+          console.log(error)
+        }
+    }
+      fetchData();
+  }, []);
+
 
   return (
-    <div className='btn btn-sucess w-100 rounded-0'>
-      <h1>Adicionar</h1>
-
-      <form onSubmit={postFunction}>
-      <input 
-        type='text' 
-        placeholder='Enter name' 
-        autoComplete='off' 
-        name='email'
-        className='form-control rounded-0 w-30'
-        onChange={(e) => setName(e.target.value)}
-      />
-      <input 
-        type='text' 
-        placeholder='Enter ingridients' 
-        autoComplete='off' 
-        name='email'
-        className='form-control rounded-0 w-30'
-        onChange={(e) => setIngredients(e.target.value)}
-      />
-      <input 
-        type='float' 
-        placeholder='Enter price' 
-        autoComplete='off' 
-        name='email'
-        className='form-control rounded-0 w-30'
-        onChange={(e) => setPrice(e.target.value)}
-      />
-      <button type="submit" className='btn btn-sucess w-100 rounded-0'>
-          Register
-      </button>
-      </form>
+    <div className='datas_container'>
+      <h1>Teste de API</h1>
+        <h2>Item 6512e1ed8d84c4bd0803826c:</h2>
+        <p>Nome: {name}</p>
+        <p>Preco: {price}</p>
+        <p>Ingredientes: {ingredients}</p>
     </div>
   )
 }

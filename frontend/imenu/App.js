@@ -5,22 +5,28 @@ import Cardapio from './src/Componentes/Cardapio';
 import Prato from './src/Componentes/Prato';
 import Inform from './src/Componentes/Inform';
 import Adm from './src/Componentes/Adm';
+import Initial from "./src/Componentes/Initial";
 
 const Stack = createNativeStackNavigator();
 
 function MyStack() {
   return (
-      <Stack.Navigator initalRouteName="Adm">
+      <Stack.Navigator initalRouteName="Initial">
         <Stack.Screen 
-          name="Adm" 
-          component={Adm} 
+          name="Initial" 
+          component={Initial}
           options={{ headerShown: false
-                  ,statusBarColor:"#277C9D"}}>
+            ,statusBarColor:"#277C9D"}} >
         </Stack.Screen>
         <Stack.Screen 
           name="Cardapio" 
-          component={Cardapio} 
-          options={{ headerShown: false}}>
+          component={Cardapio}>
+        </Stack.Screen>
+        <Stack.Screen 
+          name="Adm" 
+          component={Adm} 
+          options={{ headerShown: true
+                  ,statusBarColor:"#277C9D"}}>
         </Stack.Screen>
         <Stack.Screen 
           name="Prato"

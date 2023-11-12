@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View,TouchableOpacity, Image,FlatList, ScrollView, Button, ImageBackground, TextInput} from 'react-native';
 import { useEffect,useState } from 'react';
 import List from "./List";
+import Adm from "./Adm"
 
 export default function Cardapio({navigation}) {
 
@@ -53,22 +54,23 @@ export default function Cardapio({navigation}) {
     
   return (
     <View style={{flex:1, alignItems:"center"}}>   
-      {/* // View da imagem de cabecalho */}
+      {/* View da imagem de cabecalho */}
       <ImageBackground source={{uri:"https://moinhoglobo.com.br/wp-content/uploads/2019/05/16-hamburguer.jpeg"}}
          style={{width:414,height:150, alignItems:"flex-end", backgroundColor: '#90B7C1'}}>
+        {/* Go to Prato */}
         <TouchableOpacity 
           onPress={() => navigation.navigate('Prato')}>
           <Image style={{width:50,height:50,marginTop:20,marginRight:10}}
-          source={{uri:"https://w7.pngwing.com/pngs/218/469/png-transparent-plate-dish-kitchen-white-porcelain-thumbnail.png"}}/>
+          source={{uri:"https://purepng.com/public/uploads/large/purepng.com-plateplatedishplattertrencherflat-dishflat-vesseldishwaretableware-1701528276468sigfx.png"}}/>
           </TouchableOpacity>
       </ImageBackground>
-      
-      {/* // Variedade de opcoes */}
+      {/* Options*/}
       <View style={{width:414 , height: 49,alignItems:"center", backgroundColor: "#277C9D"}}>
-          <Text style={styles.topico}>Todos Hamburguers Pizzas Bebidas</Text>
+          <ScrollView horizontal={true}>
+            <Text style={styles.options}>Todos   Hamburguers   Pizzas   Bebidas</Text>
+          </ScrollView>
       </View>
-
-      {/* //View dos itens disponiveis  */}
+      {/* Items*/}
       <View style={{flex:1,width:400,height:49, backgroundColor:"white"}}>
         <ScrollView style={{flex:1,backgroundColor:"#90B7C1", paddingTop:10}}>
           <Text style={styles.titulo}>Hamburguers</Text>
@@ -103,9 +105,10 @@ const styles = StyleSheet.create({
     marginLeft: 17,
     fontSize: 18,
   },
-  topico: {
-    fontSize:24, 
+  options: {
+    fontSize:22, 
     color:"white",
-    alignItems:"center"
+    alignItems:"center",  
+    justifyItems:"center"
   }
 })

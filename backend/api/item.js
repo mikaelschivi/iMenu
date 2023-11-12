@@ -69,4 +69,25 @@ module.exports = (app) => {
             console.log(err);
         }
     });        
+
+
+    // teste ryan
+        // busca por um item pelo seu nome no banco de dados
+        app.get('/api/findItemByName/:name', async (req, res) => {
+            try{
+                const result = await Item.findById(req.params.name);
+                if (!result){
+                    res.send(400).send({ error: 'item not found' });
+                }
+                res.status(200).json({
+                    "user": result
+                });
+            } catch(err){
+                res.status(401).send({ error: "error" });
+                console.log(err);
+            }    
+        });
 }
+
+
+
