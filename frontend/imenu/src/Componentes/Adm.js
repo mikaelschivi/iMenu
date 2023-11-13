@@ -2,7 +2,8 @@ import React from "react";
 import { View, Text, TouchableOpacity, TextInput, StyleSheet, Button, } from "react-native";
 import { useState, useEffect } from "react";
 
-export default function Admin() {
+
+export default function Admin({navigation}) {
 
     const [name,setName] = useState('')
     const [price,setPrice] = useState('')
@@ -46,9 +47,12 @@ export default function Admin() {
     // }
 
     return (
-        <View style={{flex:1,backgroundColor:"#90B7C1" }}>
+        <View style={{flex:1,flexDirection: "colunm",justifyContent: "center",backgroundColor:"#90B7C1" }}>
             <View style={styles.fundo}>
-                <Text value={name}></Text>
+
+            {/* Tela de adicionar item */}
+
+                {/* <Text value={name}></Text>
                 <TextInput 
                     style={styles.textInput} 
                     placeholder="Name" 
@@ -64,18 +68,24 @@ export default function Admin() {
                     onChangeText={setPrice}
                     value={price}
                     placeholder="Price"
-                    keyboardType="numeric"/>
-                <TouchableOpacity style={styles.add}>
-                    <Text style={styles.text_a}>Add</Text>
+                    keyboardType="numeric"/> */}
+
+
+
+
+                <TouchableOpacity style={styles.bottom} onPress={() => navigation.navigate('Add')}>
+                    <Text style={styles.text_a}>Adicionar</Text>
+                    
                 </TouchableOpacity>
 
-                <View style={{justifyContent:"center",alignContent:"center"}}>
-                    <Text></Text>
-                    <Text>View para ver os valores</Text>
-                    <Text>O nome:     {name}</Text>
-                    <Text>O ingred.:  {ingredients}</Text>
-                    <Text>O preco:     {price}</Text>
-                </View>
+                <TouchableOpacity style={styles.bottom} onPress={() => navigation.navigate('Verify')}>
+                    <Text style={styles.text_a}>Verificar</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity style={styles.bottom} onPress={() => navigation.navigate('Delete')}>
+                    <Text style={styles.text_a}>Deletar</Text>
+                </TouchableOpacity>
+
                 </View>
             </View>
     )
@@ -103,17 +113,19 @@ const styles = StyleSheet.create({
         height: 50,
         width:300,
     },
-    add: {
+    bottom: {
         backgroundColor: "#009427",
         marginTop: 15,
-        width:100,
+        width:200,
         height:60,
         borderRadius: 20,
-        justifyContent:"center",
-        alignItems: "center",
+        justifyContent: "flex-start",
+        alignItems: "center",   
     },
     text_a:{
         fontWeight: 'bold',
         fontSize: 20,
+        marginTop: 15,
+
     }
   })
