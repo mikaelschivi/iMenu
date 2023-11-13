@@ -6,6 +6,15 @@ import Adm from "./Adm"
 
 export default function Cardapio({navigation}) {
 
+  const [data,setData] = useState([])
+  // const pizza3 = [{
+  //     nome:"", 
+  //     descrição:"",
+  //     id:,
+  //     preco:"",
+  //     img:
+  // }]
+
   const pizza = [{
       nome:"Pizza Bacon", 
       descrição:"bacon, ovo, ...",
@@ -20,6 +29,7 @@ export default function Cardapio({navigation}) {
       preco:"R$ 60,00",
       img:"https://www.picanhacia.com.br/wp-content/uploads/2017/01/11379225_1180312101994735_933388139_n-15.jpg"
     }]
+    console.log(pizza[0].nome)
 
   const hamburguer = [{
       nome:"Tradicionale", 
@@ -50,8 +60,34 @@ export default function Cardapio({navigation}) {
       preco:"R$ 09,00",
       img:"https://giassi.vtexassets.com/arquivos/ids/635065/Refrigerante-Guarana-Antarctica-Garrafa-2l.png?v=638203846615870000"
     }]
+  
+  let cont = 0;
 
-    
+  //Get com fetch
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch("http://10.10.46.98:3000/api/findAllItems/")
+        try {
+          const responseJson = await response.json()
+          //console.log(responseJson.items)
+          // for (let i = 0; i < responseJson.items.length; i++) {
+          //   if (responseJson.items[i].classe == "pizza") {
+          //     console.log(responseJson.items[i].name)
+          //     // pizza[cont].name = (responseJson.user.name)
+          //     // pizza[cont].price = (responseJson.user.price)
+          //     // pizza[cont].ingredients = (responseJson.user.ingredients)
+          //   }
+          // }
+          setData(responseJson.items)
+        }
+        catch (error) {
+          console.log(error)
+        }
+    }
+      fetchData();
+  }, []);
+   
+
   return (
     <View style={{flex:1, alignItems:"center"}}>   
       {/* View da imagem de cabecalho */}
@@ -80,7 +116,7 @@ export default function Cardapio({navigation}) {
           renderItem={({item})=> <List data={item} />} 
           />
           <Text style={styles.titulo}>Pizzas</Text>
-          <FlatList data={pizza}
+          <FlatList data={data}
           showsVerticalScrollIndicator={false}
           keyExtractor={(item) => item.id}
           renderItem={({item})=> <List data={item} />} 
@@ -106,7 +142,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   options: {
-    fontSize:22, 
     color:"white",
     alignItems:"center",  
     justifyItems:"center"
