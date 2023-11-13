@@ -34,7 +34,6 @@ export default function Add(){
         <View style={{flex:1,backgroundColor:"#90B7C1" }}>
                     <View style={styles.fundo}>
 
-
                         <Text value={name}></Text>
                         <TextInput 
                             style={styles.textInput} 
@@ -52,8 +51,6 @@ export default function Add(){
                             value={price}
                             placeholder=" Preço"
                             keyboardType="numeric"/>
-
-
 
 
                         <TouchableOpacity style={styles.bottom}>
