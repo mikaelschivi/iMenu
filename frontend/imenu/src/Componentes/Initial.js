@@ -7,8 +7,9 @@ export default function Initial({navigation}) {
     
   return (
     <View style={styles.body}> 
-      <View style={styles.body2}>
-        <Text style={styles.title}>Welcome to iMenu</Text>  
+      <View style={styles.bodyLogo}>
+      <Image style={styles.logo}
+      source={require("../../img/logo.png")}/>
       </View>
       <View style={styles.body3}>
         <View style={styles.screens}>
@@ -38,12 +39,8 @@ export default function Initial({navigation}) {
 const styles = StyleSheet.create({
   body: {
     flex:1, 
-    backgroundColor:'#90B7C1',
-  },
-  body2: {
-    flex:1, 
     alignItems: "center",
-    justifyContent:"flex-end"
+    backgroundColor:'#90B7C1',
   },
   body3: {
     flex:2, 
@@ -69,4 +66,15 @@ const styles = StyleSheet.create({
     height:50,
     marginLeft: 40,
   },
+  bodyLogo:{
+    alignItems: "center",
+    justifyContent: "center",
+    width: "100%",
+    height: "35%",
+    backgroundColor: "#277C9D",
+  },
+  logo: {
+    width: 220,
+    height: 220,
+  }
 })

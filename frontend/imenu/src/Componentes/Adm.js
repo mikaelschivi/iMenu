@@ -1,12 +1,17 @@
 import React from "react";
-import { View, Text, TouchableOpacity, TextInput, StyleSheet, Button, } from "react-native";
+import { View, Text, TouchableOpacity, TextInput, StyleSheet, Button, Image} from "react-native";
 import { useState, useEffect } from "react";
 
 
 export default function Admin({navigation}) {
     
     return (
-        <View style={{flex:1,flexDirection: "colunm",justifyContent: "center",backgroundColor:"#90B7C1" }}>
+        <View style={styles.body}>
+            <View style={styles.bodyLogo}>
+            <Image style={styles.logo}
+            source={require("../../img/logo.png")}/>
+            </View>
+            <View style={styles.body1}>
             <View style={styles.fundo}>
                 <TouchableOpacity style={styles.bottom} onPress={() => navigation.navigate('Add')}>
                     <Text style={styles.text_a}>Adicionar</Text>       
@@ -22,10 +27,23 @@ export default function Admin({navigation}) {
 
                 </View>
             </View>
+        </View>
     )
 }
 
 const styles = StyleSheet.create({
+    body: {
+        flex:1, 
+        alignItems: "center",
+        backgroundColor:'#90B7C1',
+      },
+    body1: {
+        flex:2,
+        justifyContent: "flex-start",
+        backgroundColor:"#90B7C1",
+        flexDirection: "column",
+        marginTop: 20,
+    },
     header: {
         height:50,
         alignItems: "center",
@@ -47,7 +65,7 @@ const styles = StyleSheet.create({
         width:300,
     },
     bottom: {
-        backgroundColor: "#009427",
+        backgroundColor: "#277C9D",
         marginTop: 15,
         width:200,
         height:60,
@@ -60,5 +78,16 @@ const styles = StyleSheet.create({
         fontSize: 20,
         marginTop: 15,
 
-    }
+    },
+    bodyLogo:{
+        alignItems: "center",
+        justifyContent: "center",
+        width: "100%",
+        backgroundColor: "#277C9D",
+        height: "35%",
+      },
+      logo: {
+        width: 220,
+        height: 220,
+      }
   })

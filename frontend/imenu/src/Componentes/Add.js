@@ -52,8 +52,6 @@ export default function Add(){
                             keyboardType="numeric"/>
 
 
-
-
                         <TouchableOpacity style={styles.bottom}>
                             <Text style={styles.text_a}>Adicionar</Text>
                         </TouchableOpacity>
