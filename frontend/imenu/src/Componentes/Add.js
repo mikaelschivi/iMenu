@@ -33,8 +33,6 @@ export default function Add(){
 
         <View style={{flex:1,backgroundColor:"#90B7C1" }}>
                     <View style={styles.fundo}>
-
-
                         <Text value={name}></Text>
                         <TextInput 
                             style={styles.textInput} 

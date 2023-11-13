@@ -7,13 +7,13 @@ export default function List(props,{navigation}){
     return(
         <View style={styles.container}>
             <View style={styles.descrition}>
-                <Text style={{fontSize:20}}>{props.data.nome}</Text>
-                <Text style={{fontSize:14}}>{props.data.descrição}</Text> 
-                <Text style={{fontSize:18,color:'#038028'}}>{props.data.preco}</Text>
+                <Text style={{fontSize:20}}>{props.data.name}</Text>
+                <Text style={{fontSize:14}}>{props.data.ingredients}</Text> 
+                <Text style={{fontSize:18,color:'#038028'}}>{props.data.price}</Text>
             </View>
             <View style={styles.adiciona}>
                 <Image 
-                source={{uri: props.data.img}}
+                source={{uri: props.data.image}}
                 style={{width:65, height:65, borderRadius:15}}
                 />
                 <View style={styles.funcionalidades}>
