@@ -32,38 +32,34 @@ export default function Add(){
         return(
 
         <View style={{flex:1,backgroundColor:"#90B7C1" }}>
-                    <View style={styles.fundo}>
-                        <Text value={name}></Text>
-                        <TextInput 
-                            style={styles.textInput} 
-                            placeholder=" Nome" 
-                            onChangeText={setName}
-                            value={name}/>
-                        <TextInput 
-                            style={styles.textInput}
-                            placeholder=" Ingridientes"
-                            onChangeText={setIngredients}
-                            value={ingredients}/>
-                        <TextInput 
-                            style={styles.textInput} 
-                            onChangeText={setPrice}
-                            value={price}
-                            placeholder=" Preço"
-                            keyboardType="numeric"/>
-
-
-                        <TouchableOpacity style={styles.bottom}>
-                            <Text style={styles.text_a}>Adicionar</Text>
-                        </TouchableOpacity>
-
-
-                        <View style={{justifyContent:"center",alignContent:"center"}}>
-                            <Text>View para ver os valores</Text>
-                            <Text>Nome:     {name}</Text>
-                            <Text>Ingredientes:  {ingredients}</Text>
-                            <Text>Preço:     {price}</Text>
-                        </View>
-                        </View>
+            <View style={styles.fundo}>
+                <Text value={name}></Text>
+                <TextInput 
+                    style={styles.textInput} 
+                    placeholder=" Nome" 
+                    onChangeText={setName}
+                    value={name}/>
+                <TextInput 
+                    style={styles.textInput}
+                    placeholder=" Ingridientes"
+                    onChangeText={setIngredients}
+                    value={ingredients}/>
+                <TextInput 
+                    style={styles.textInput} 
+                    onChangeText={setPrice}
+                    value={price}
+                    placeholder=" Preço"
+                    keyboardType="numeric"/>
+                <TouchableOpacity style={styles.bottom}>
+                    <Text style={styles.text_a}>Adicionar</Text>
+                </TouchableOpacity>
+                <View style={{justifyContent:"center",alignContent:"center"}}>
+                    <Text>View para ver os valores</Text>
+                    <Text>Nome:     {name}</Text>
+                    <Text>Ingredientes:  {ingredients}</Text>
+                    <Text>Preço:     {price}</Text>
+                </View>
+            </View>
         </View>
         )};
 

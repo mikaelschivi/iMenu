@@ -17,24 +17,42 @@ export default function List(props,{navigation}){
     }
     module.exports.order=order;
     
-    //setOrder([])
+    // setOrder([])
     // const data = {
     //     "name" : props.data.name,
     //     "ingredients" : props.data.ingredients,
     //     "price": props.data.price,
-    //     "image": props.data.image
+    //     "image": props.data.image,
+    //     "amount": 1
     // }
 
-    // function sendOrder () {
-    //     data.name = props.data.name,
-    //     data.ingredients = props.data.ingredients,
-    //     data.price = props.data.price,
-    //     data.image = props.data.image
+                //teste para adicionar mais de um item no prato
+    // const [pedido,setPedido] = useState([{
+    //     name : "",
+    //     ingredients : "",
+    //     price: "",
+    //     image: "",
+    //     amount: 0
+    // }])
 
-    //     console.log(data)
-    //     return data
+    // function sendPedido () {
+    //     setOrder({
+    //         "name" : props.data.name,
+    //         "ingredients" : props.data.ingredients,
+    //         "price" : props.data.price,
+    //         "image" : props.data.image
+    //     });
+    //     // setOrder(order => [...order,{
+    //     //     "name" : props.data.name,
+    //     //     "ingredients" : props.data.ingredients,
+    //     //     "price" : props.data.price,
+    //     //     "image" : props.data.image
+    //     // }
+    //     // ]);     
+    //     console.log("Pedido foi :",pedido)
+    //     return pedido
     // }
-    // module.exports.data=data;
+    // module.exports.pedido=pedido;
 
 
     return((
