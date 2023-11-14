@@ -8,8 +8,8 @@ export default function Initial({navigation}) {
   return (
     <View style={styles.body}> 
       <View style={styles.bodyLogo}>
-      <Image style={styles.logo}
-      source={require("../../img/logo.png")}/>
+        <Image style={styles.logo}
+        source={require("../../img/logo.png")}/>
       </View>
       <View style={styles.body3}>
         <View style={styles.screens}>
@@ -25,7 +25,7 @@ export default function Initial({navigation}) {
           {/* Go to Menu */}
           <TouchableOpacity style={{flexDirection:"row",alignItems: "center"}}
             onPress={() => navigation.navigate('Cardapio')}>
-            <Text style={{fontSize:26}}>Client</Text>
+            <Text style={{fontSize:26}}>Cliente</Text>
             <Image style={styles.images}
             source={{uri:"https://cdn-icons-png.flaticon.com/512/3428/3428655.png"}}/>
             </TouchableOpacity>
@@ -72,9 +72,11 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "35%",
     backgroundColor: "#277C9D",
+    //backgroundColor: "#90B7C1",
   },
   logo: {
     width: 220,
     height: 220,
+    borderRadius: 40
   }
 })

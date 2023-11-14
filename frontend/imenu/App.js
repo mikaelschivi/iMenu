@@ -24,7 +24,9 @@ function MyStack() {
         </Stack.Screen>
         <Stack.Screen 
           name="Cardapio" 
-          component={Cardapio}>
+          component={Cardapio}
+          options={{ headerShown: false
+            ,statusBarColor:"#277C9D"}}>
         </Stack.Screen>
         <Stack.Screen 
           name="Adm" 
