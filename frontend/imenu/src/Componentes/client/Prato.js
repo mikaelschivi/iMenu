@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, TextInput} from "react-native";
 import {useNavegation} from '@react-navigation/native';
 import { useEffect,useState} from 'react';
-var pedidos=require('./List')
+var pedidos=require('./client/List')
 
 export default function Prato ( props,{navigation} ) {
     // url images           
