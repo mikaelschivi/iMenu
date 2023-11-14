@@ -1,6 +1,7 @@
 import React from "react";
-import { View, Text, TouchableOpacity, TextInput, StyleSheet, Button, } from "react-native";
+import { View, Text, TouchableOpacity, TextInput, StyleSheet, Alert} from "react-native";
 import { useState, useEffect } from "react";
+
 
 
 export default function Add(){
@@ -8,26 +9,8 @@ export default function Add(){
         const [name,setName] = useState('')
         const [price,setPrice] = useState('')
         const [ingredients,setIngredients] = useState([''])
+        const [classe, setClasse] = useState('')
 
-        const [data,setData] = useState([])
-
-
-        useEffect(() => {
-            const fetchData = async () => {
-            const response = await fetch("http://192.168.42.175:3000/api/findItemById/651a0776dd20690d6d98555b/")
-                try {
-                const responseJson = await response.json()
-                setName(responseJson.user.name)
-                setPrice(responseJson.user.price)
-                setIngredients(responseJson.user.ingredients)
-                setData(responseJson);
-                }
-                catch (error) {
-                console.log(error)
-                }
-            }
-            fetchData();
-        }, []);
     
         return(
 
@@ -39,6 +22,11 @@ export default function Add(){
                             placeholder=" Nome" 
                             onChangeText={setName}
                             value={name}/>
+                            <TextInput 
+                            style={styles.textInput} 
+                            onChangeText={setClasse}
+                            value={classe}
+                            placeholder=" Classe"/>
                         <TextInput 
                             style={styles.textInput}
                             placeholder=" Ingridientes"
@@ -52,16 +40,19 @@ export default function Add(){
                             keyboardType="numeric"/>
 
 
-                        <TouchableOpacity style={styles.bottom}>
-                            <Text style={styles.text_a}>Adicionar</Text>
-                        </TouchableOpacity>
+                    <TouchableOpacity style={styles.bottom}
+                    onPress={() => addToBD({name: name, classe: classe, ingredients: ingredients, price: price})}>
+                            
+                    <Text style={styles.text_a}>Adicionar</Text>
+                    </TouchableOpacity>
 
 
                         <View style={{justifyContent:"center",alignContent:"center"}}>
                             <Text>View para ver os valores</Text>
-                            <Text>Nome:     {name}</Text>
-                            <Text>Ingredientes:  {ingredients}</Text>
-                            <Text>Preço:     {price}</Text>
+                            <Text>Nome: {name}</Text>
+                            <Text>Classe: {classe}</Text>
+                            <Text>Ingredientes: {ingredients}</Text>
+                            <Text>Preço: {price}</Text>
                         </View>
                         </View>
         </View>
@@ -103,3 +94,35 @@ const styles = StyleSheet.create({
         marginTop: 15,
     }
 })
+
+
+async function addToBD(lanche){
+    setName('')
+    setClasse('')
+    setIngredients('')
+    setPrice('')
+    const response = await fetch("https://192.168.0.4/api/createItem", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+          },
+        body: JSON.stringify(lanche),
+    })
+
+    try {
+        const resposta = await response.json()
+        return (
+            
+            console.log(resposta)
+        )
+        
+    }
+
+    catch (error) {
+        console.log(error)
+      }
+
+
+    
+
+}
