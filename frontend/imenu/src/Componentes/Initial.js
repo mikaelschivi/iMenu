@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View, Image, StyleSheet, TouchableOpacity} from 'react-native';
-import Admin from './Adm';
-import Cardapio from './Cardapio';
+import Admin from "./admin/Adm"
+import Cardapio from "./client/Cardapio"
 
 export default function Initial({navigation}) {
     

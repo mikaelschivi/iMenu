@@ -9,7 +9,7 @@ export default function Admin({navigation}) {
         <View style={styles.body}>
             <View style={styles.bodyLogo}>
             <Image style={styles.logo}
-            source={require("../../img/logo.png")}/>
+            source={require("../../../img/logo.png")}/>
             </View>
             <View style={styles.body1}>
             <View style={styles.fundo}>

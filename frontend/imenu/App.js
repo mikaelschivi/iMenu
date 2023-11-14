@@ -1,14 +1,14 @@
 import React from "react";
 import { NavigationContainer} from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Cardapio from './src/Componentes/Cardapio';
-import Prato from './src/Componentes/Prato';
-import Inform from './src/Componentes/Inform';
-import Adm from './src/Componentes/Adm';
+import Cardapio from './src/Componentes/client/Cardapio';
+import Prato from './src/Componentes/client/Prato';
+import Inform from './src/Componentes/client/Inform';
+import Adm from './src/Componentes/admin/Adm';
 import Initial from "./src/Componentes/Initial";
-import Add from "./src/Componentes/Add";
-import Verify from "./src/Componentes/Verify";
-import Delete from "./src/Componentes/Delete";
+import Add from "./src/Componentes/admin/Add";
+import Verify from "./src/Componentes/admin/Verify";
+import Delete from "./src/Componentes/admin/Delete"
 
 
 const Stack = createNativeStackNavigator();

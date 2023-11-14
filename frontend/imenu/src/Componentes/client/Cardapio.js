@@ -2,10 +2,9 @@ import React from 'react';
 import { StyleSheet, Text, View,TouchableOpacity, Image,FlatList, ScrollView, Button, ImageBackground, TextInput} from 'react-native';
 import { useEffect,useState} from 'react';
 import List from "./List";
-import Adm from "./Adm"
 
 export default function Cardapio({navigation}) {
-  // url images
+  // url images 
   const imgPrato = "https://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c55e.png"
   const imgBackground = "https://moinhoglobo.com.br/wp-content/uploads/2019/05/16-hamburguer.jpeg"
 
@@ -17,10 +16,10 @@ export default function Cardapio({navigation}) {
     setPizza([])
     setHamburgueres([])
     const fetchData = async () => {
-      const response = await fetch("http://192.168.42.40:3000/api/findAllItems/")
+      const response = await fetch("http://192.168.42.55:3000/api/findAllItems/")
         try {
           const responseJson = await response.json()
-          //console.log(responseJson.items)
+          console.log(responseJson.items)
           for (let i = 0; i < responseJson.items.length; i++) {
             if (responseJson.items[i].class == "pizza") {
               setPizza(pizza => [...pizza, responseJson.items[i]]);
