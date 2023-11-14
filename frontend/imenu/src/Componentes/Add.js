@@ -101,6 +101,10 @@ async function addToBD(lanche){
     setClasse('')
     setIngredients('')
     setPrice('')
+
+    var dadoPost = JSON.stringify(
+        
+    )
     const response = await fetch("https://192.168.0.4/api/createItem", {
         method: "POST",
         headers: {
