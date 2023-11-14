@@ -1,13 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import {View, Text, StyleSheet, Image, TouchableOpacity} from "react-native";
-import {useNavegation} from '@react-navigation/native';
+import {useNavegation ,navigate} from '@react-navigation/native';
 
 export default function List(props,{navigation}){
-    // url images
+    // url images           
     const imgAdd = "https://cdn.pixabay.com/photo/2014/04/02/10/41/button-304224_960_720.png"
     const imgInfo= "https://cdn-icons-png.flaticon.com/512/3444/3444393.png"
 
-    return(
+    const [order,setOrder] = useState([])
+
+    function sendOrder () {
+        setOrder(order => [...order, props.data]);
+
+        console.log(order)
+        return order
+    }
+    module.exports.order=order;
+    
+    //setOrder([])
+    // const data = {
+    //     "name" : props.data.name,
+    //     "ingredients" : props.data.ingredients,
+    //     "price": props.data.price,
+    //     "image": props.data.image
+    // }
+
+    // function sendOrder () {
+    //     data.name = props.data.name,
+    //     data.ingredients = props.data.ingredients,
+    //     data.price = props.data.price,
+    //     data.image = props.data.image
+
+    //     console.log(data)
+    //     return data
+    // }
+    // module.exports.data=data;
+
+
+    return((
         <View style={styles.container}>
             <View style={styles.descrition}>
                 <Text style={{fontSize:20}}>{props.data.name}</Text>
@@ -29,17 +59,16 @@ export default function List(props,{navigation}){
                     </TouchableOpacity>
                     
                     <TouchableOpacity 
-                        onPress={() => alert('Adicionado ao seu prato')}>
+                        onPress={() => sendOrder()}>
                         <Image 
                         source={{uri: imgAdd}}
                         style={styles.imgIcons}
                         /> 
                     </TouchableOpacity>
-                    
                 </View>
             </View>
         </View >
-    )
+    ))
 }
 
 
