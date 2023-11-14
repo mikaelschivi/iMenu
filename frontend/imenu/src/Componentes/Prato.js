@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, TextInput} from "react-native";
 import {useNavegation} from '@react-navigation/native';
 import { useEffect,useState} from 'react';
-var pedido=require('./List')
+var pedidos=require('./List')
 
 export default function Prato ( props,{navigation} ) {
     // url images           
@@ -10,9 +10,9 @@ export default function Prato ( props,{navigation} ) {
     const imgLix= "https://cdn-icons-png.flaticon.com/512/5510/5510213.png"
 
     const [table,setTable] = useState('')
-
-    const order = pedido.order
-    console.log("Pedido:",order)
+    const pedido = pedidos.pedido
+    // const order = pedidos.order
+    // console.log("Pedido:",order)
 
     // Finaliza e envia o pedido e a mesa para a cozinha
     function finishOrder () {
@@ -21,20 +21,20 @@ export default function Prato ( props,{navigation} ) {
         setTable([''])
         return 
     }
-    module.exports.order=order;
-    module.exports.table=table;
+    // module.exports.order=order;
+    // module.exports.table=table;
 
     return (
         <View style={styles.body}>
             <View style={styles.pedidos}>
                 <View style={styles.pedido}>
                     <View style={styles.descrition}>
-                        <Text style={{fontSize:20}}>{order[0].name}</Text> 
-                        <Text style={{fontSize:18,color:'#038028'}}>R$ {order[0].price}</Text>
+                        <Text style={{fontSize:20}}>{pedido[1].name}</Text> 
+                        <Text style={{fontSize:18,color:'#038028'}}>R$ {pedido[0].price}</Text>
                     </View>
                     <View style={styles.adiciona}>
                         <Image 
-                        source={{uri: order[0].image}}
+                        source={{uri: pedido[0].image}}
                         style={styles.imgItems}
                         />
                         <View style={styles.funcionalidades}>

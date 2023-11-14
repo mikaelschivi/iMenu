@@ -8,55 +8,74 @@ export default function List(props,{navigation}){
     const imgInfo= "https://cdn-icons-png.flaticon.com/512/3444/3444393.png"
 
     const [order,setOrder] = useState([])
-
-    function sendOrder () {
-        setOrder(order => [...order, props.data]);
-
-        console.log(order)
-        return order
-    }
-    module.exports.order=order;
     
-    // setOrder([])
-    // const data = {
-    //     "name" : props.data.name,
-    //     "ingredients" : props.data.ingredients,
-    //     "price": props.data.price,
-    //     "image": props.data.image,
-    //     "amount": 1
+    
+    // function sendOrder () {
+    //     setOrder(order => [...order, props.data]);
+    //     console.log("Dado:",props.data.name)
+    //     console.log(order)
+    //     return order
     // }
+    // module.exports.order=order;
 
                 //teste para adicionar mais de um item no prato
-    // const [pedido,setPedido] = useState([{
-    //     name : "",
-    //     ingredients : "",
-    //     price: "",
-    //     image: "",
-    //     amount: 0
-    // }])
+    const [pedido,setPedido] = useState([])
 
-    // function sendPedido () {
-    //     setOrder({
-    //         "name" : props.data.name,
-    //         "ingredients" : props.data.ingredients,
-    //         "price" : props.data.price,
-    //         "image" : props.data.image
-    //     });
-    //     // setOrder(order => [...order,{
-    //     //     "name" : props.data.name,
-    //     //     "ingredients" : props.data.ingredients,
-    //     //     "price" : props.data.price,
-    //     //     "image" : props.data.image
-    //     // }
-    //     // ]);     
-    //     console.log("Pedido foi :",pedido)
-    //     return pedido
-    // }
-    // module.exports.pedido=pedido;
+    function sendPedido () {
+        if (pedido == []){
+            setPedido({
+                name : props.data.name,
+                ingredients : props.data.ingredients,
+                price : props.data.price,
+                image : props.data.image
+            })
+            return pedido
+        }
+        else{
+            setPedido(pedido=> [...pedido,{
+                name : props.data.name,
+                ingredients : props.data.ingredients,
+                price : props.data.price,
+                image : props.data.image}   
+        ]);return pedido}
+             
+    }
+    //console.log("Pedido foi :",pedido)
+    module.exports.pedido=pedido;
 
+
+
+    const [teste,setTeste] = useState([])
+    
+    function adicionando () {
+        if (teste.length === 0){
+            setTeste(teste=> [...teste,{
+                name : "priumeiro",
+                ingredients : "primeiro",
+            }])
+            console.log("valor :",teste)  
+            return teste
+        }
+        else{
+            setTeste(teste=> [...teste,{
+                name : "segundo",
+                ingredients : "segundo", 
+            }]);
+            console.log("valor :",teste)  
+            return teste}
+    }
+    
+    
 
     return((
         <View style={styles.container}>
+            {/* <TouchableOpacity 
+                onPress={() => adicionando()}>
+                <Image 
+                source={{uri: imgAdd}}
+                style={styles.imgIcons}
+                /> 
+            </TouchableOpacity> */}
             <View style={styles.descrition}>
                 <Text style={{fontSize:20}}>{props.data.name}</Text>
                 <Text style={{fontSize:14}}>{props.data.ingredients}</Text> 
@@ -77,7 +96,7 @@ export default function List(props,{navigation}){
                     </TouchableOpacity>
                     
                     <TouchableOpacity 
-                        onPress={() => sendOrder()}>
+                        onPress={() => adicionando()}>
                         <Image 
                         source={{uri: imgAdd}}
                         style={styles.imgIcons}
