@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View,TouchableOpacity, Image,FlatList, ScrollView, Button, ImageBackground, TextInput} from 'react-native';
+import { StyleSheet, Text, View,TouchableOpacity, Image,FlatList, ScrollView, VirtualizedList, ImageBackground,} from 'react-native';
 import { useEffect,useState} from 'react';
 import List from "./List";
 
@@ -16,10 +16,10 @@ export default function Cardapio({navigation}) {
     setPizza([])
     setHamburgueres([])
     const fetchData = async () => {
-      const response = await fetch("http://192.168.42.55:3000/api/findAllItems/")
+      const response = await fetch("http://10.10.46.98:3000/api/findAllItems/")
         try {
           const responseJson = await response.json()
-          console.log(responseJson.items)
+          console.log("Items",responseJson.items)
           for (let i = 0; i < responseJson.items.length; i++) {
             if (responseJson.items[i].class == "pizza") {
               setPizza(pizza => [...pizza, responseJson.items[i]]);
@@ -60,21 +60,21 @@ export default function Cardapio({navigation}) {
         <ScrollView style={styles.viewScroll}>
           <Text style={styles.titulo}>Pizzas</Text>
           <FlatList data={pizza}
-          showsVerticalScrollIndicator={false}
-          keyExtractor={(item) => item.id}
-          renderItem={({item})=> <List data={item} />} 
+            showsVerticalScrollIndicator={false}
+            keyExtractor={(item) => item.id}
+            renderItem={({item})=> <List data={item} />} 
           />
           <Text style={styles.titulo}>Hamburguers</Text>
           <FlatList data={hamburgueres}
-          showsVerticalScrollIndicator={false}
-          keyExtractor={(item) => item.id}
-          renderItem={({item})=> <List data={item} />} 
+            showsVerticalScrollIndicator={false}
+            keyExtractor={(item) => item.id}
+            renderItem={({item})=> <List data={item} />} 
           />
           <Text style={styles.titulo}>Bebidas</Text>
           {/* <FlatList data={bebidas}
-          showsVerticalScrollIndicator={false}
-          keyExtractor={(item) => item.id}
-          renderItem={({item})=> <List data={item} />}
+            showsVerticalScrollIndicator={false}
+            keyExtractor={(item) => item.id}
+            renderItem={({item})=> <List data={item} />}
           /> */}
         </ScrollView>
       </View>
@@ -93,7 +93,9 @@ const styles = StyleSheet.create({
     fontSize: 22, 
     color:"white",
     alignItems:"center",  
-    justifyItems:"center"
+    justifyItems:"center",
+    marginLeft:10,
+    marginTop:6,
   },
   image1: {
     width:414,

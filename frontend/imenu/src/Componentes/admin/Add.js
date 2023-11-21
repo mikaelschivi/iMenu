@@ -53,12 +53,6 @@ export default function Add(){
                 <TouchableOpacity style={styles.bottom}>
                     <Text style={styles.text_a}>Adicionar</Text>
                 </TouchableOpacity>
-                <View style={{justifyContent:"center",alignContent:"center"}}>
-                    <Text>View para ver os valores</Text>
-                    <Text>Nome:     {name}</Text>
-                    <Text>Ingredientes:  {ingredients}</Text>
-                    <Text>Preço:     {price}</Text>
-                </View>
             </View>
         </View>
         )};

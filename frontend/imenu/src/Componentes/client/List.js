@@ -7,75 +7,41 @@ export default function List(props,{navigation}){
     const imgAdd = "https://cdn.pixabay.com/photo/2014/04/02/10/41/button-304224_960_720.png"
     const imgInfo= "https://cdn-icons-png.flaticon.com/512/3444/3444393.png"
 
-    const [order,setOrder] = useState([])
+    const quatity = 1 //getItemQuantity(id)
+    const [plateItems,setPlateItems] = useState([{
+        id : String,
+        quantity : Number
+        }
+    ])
     
-    
-    // function sendOrder () {
-    //     setOrder(order => [...order, props.data]);
-    //     console.log("Dado:",props.data.name)
-    //     console.log(order)
-    //     return order
-    // }
-    // module.exports.order=order;
+    function sendOrder () {
+        setOrder(order => [...order, props.data]);
+        console.log("Dado:",props.data.name)
+        console.log(order)
+        return order
 
-                //teste para adicionar mais de um item no prato
-    const [pedido,setPedido] = useState([])
-
-    function sendPedido () {
-        if (pedido == []){
-            setPedido({
-                name : props.data.name,
-                ingredients : props.data.ingredients,
-                price : props.data.price,
-                image : props.data.image
+    function sendOrder () {
+        if (plateItems.length === 0){
+            setPlateItems({
+                id : props.data.id,
+                quantity : 1             
             })
-            return pedido
+            return plateItems
         }
         else{
-            setPedido(pedido=> [...pedido,{
-                name : props.data.name,
-                ingredients : props.data.ingredients,
-                price : props.data.price,
-                image : props.data.image}   
-        ]);return pedido}
-             
-    }
-    //console.log("Pedido foi :",pedido)
-    module.exports.pedido=pedido;
-
-
-
-    const [teste,setTeste] = useState([])
-    
-    function adicionando () {
-        if (teste.length === 0){
-            setTeste(teste=> [...teste,{
-                name : "priumeiro",
-                ingredients : "primeiro",
+            //setOrder(order => [...order, props.data])
+            setPlateItems(plateItems => [...plateItems, {
+                id : props.data._id,
+                quantity : 1             
             }])
-            console.log("valor :",teste)  
-            return teste
+            console.log("Pedido foi :",plateItems)
+            return plateItems
         }
-        else{
-            setTeste(teste=> [...teste,{
-                name : "segundo",
-                ingredients : "segundo", 
-            }]);
-            console.log("valor :",teste)  
-            return teste}
     }
+    //module.exports.pedido=pedido;
     
-    
-
     return((
         <View style={styles.container}>
-            {/* <TouchableOpacity 
-                onPress={() => adicionando()}>
-                <Image 
-                source={{uri: imgAdd}}
-                style={styles.imgIcons}
-                /> 
-            </TouchableOpacity> */}
             <View style={styles.descrition}>
                 <Text style={{fontSize:20}}>{props.data.name}</Text>
                 <Text style={{fontSize:14}}>{props.data.ingredients}</Text> 
@@ -94,9 +60,9 @@ export default function List(props,{navigation}){
                         style={styles.imgIcons}
                         /> 
                     </TouchableOpacity>
-                    
+                    <Text style={{fontSize:18,color:'#038028'}}>{quatity}</Text>
                     <TouchableOpacity 
-                        onPress={() => adicionando()}>
+                        onPress={() => sendOrder()}>
                         <Image 
                         source={{uri: imgAdd}}
                         style={styles.imgIcons}
@@ -106,7 +72,7 @@ export default function List(props,{navigation}){
             </View>
         </View >
     ))
-}
+}}
 
 
 const styles = StyleSheet.create({
@@ -157,6 +123,6 @@ imgItems: {
     width:80, 
     height:65, 
     borderRadius:15, 
-    marginLeft:4
-},
+    marginLeft:4,
+}
 })

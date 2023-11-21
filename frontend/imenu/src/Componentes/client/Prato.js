@@ -12,7 +12,7 @@ export default function Prato ( props,{navigation} ) {
     const [table,setTable] = useState('')
     const pedido = pedidos.pedido
     // const order = pedidos.order
-    // console.log("Pedido:",order)
+    console.log("Pedido recebido:", pedido)
 
     // Finaliza e envia o pedido e a mesa para a cozinha
     function finishOrder () {

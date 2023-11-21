@@ -79,15 +79,27 @@ const styles = StyleSheet.create({
         marginTop: 15,
 
     },
+    logo: {
+        width: 220,
+        height: 220,
+    },
     bodyLogo:{
         alignItems: "center",
         justifyContent: "center",
-        width: "100%",
+        width: "55%",
+        height: "25%",
         backgroundColor: "#277C9D",
-        height: "35%",
-      },
-      logo: {
-        width: 220,
-        height: 220,
-      }
+        borderRadius: 40,
+        marginTop: "20%"
+    },
   })
+
+//   bodyLogo:{
+//     alignItems: "center",
+//     justifyContent: "center",
+//     width: "55%",
+//     height: "25%",
+//     backgroundColor: "#277C9D",
+//     borderRadius: 40,
+//     marginTop: "20%"
+//   },

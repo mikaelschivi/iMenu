@@ -69,10 +69,11 @@ const styles = StyleSheet.create({
   bodyLogo:{
     alignItems: "center",
     justifyContent: "center",
-    width: "100%",
-    height: "35%",
+    width: "55%",
+    height: "25%",
     backgroundColor: "#277C9D",
-    //backgroundColor: "#90B7C1",
+    borderRadius: 40,
+    marginTop: "20%"
   },
   logo: {
     width: 220,
