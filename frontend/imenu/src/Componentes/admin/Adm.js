@@ -86,12 +86,16 @@ const styles = StyleSheet.create({
     bodyLogo:{
         alignItems: "center",
         justifyContent: "center",
-        width: "55%",
-        height: "25%",
+        width: 250,
         backgroundColor: "#277C9D",
-        borderRadius: 40,
-        marginTop: "20%"
-    },
+        height: 250,
+        borderRadius: 20,
+        marginTop: 20,
+      },
+      logo: {
+        width: 220,
+        height: 220,
+      }
   })
 
 //   bodyLogo:{
