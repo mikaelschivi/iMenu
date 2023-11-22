@@ -8,12 +8,12 @@ export default function Add(){
     
         const [name,setName] = useState('')
         const [price,setPrice] = useState('')
-        const [ingredients,setIngredients] = useState([''])
+        const [ingredients,setIngredients] = useState([])
         const [classe, setClasse] = useState('')
 
-        async function addToBD(){
+        async function addToBD(name,price,ingredients,classe){
 
-            let response = await fetch("http://192.168.0.4/api/createItem", {
+            let response = await fetch("http://10.229.8.119/api/createItem", {
                 method: "POST",
                 headers: {
                     Accept: 'application/json',
@@ -23,14 +23,14 @@ export default function Add(){
                     name:  name,
                     price: price,
                     ingredients: ingredients,
-                    classe: classe,
+                    class: classe,
+                    image: "http"
                 }),
             })
         
             try {
-                const resposta = await response.json()
+                let resposta = await response.json()
                 return (
-                    
                     console.log(resposta)
                 )
                 
@@ -43,6 +43,8 @@ export default function Add(){
               setPrice('')
               setIngredients([])
               setClasse('')
+        
+            }
     
         return(
 
@@ -73,7 +75,7 @@ export default function Add(){
 
 
                     <TouchableOpacity style={styles.bottom}
-                    onPress={() => addToBD()}>
+                    onPress={() => addToBD(name,price,ingredients,classe)}>
                             
                     <Text style={styles.text_a}>Adicionar</Text>
                     </TouchableOpacity>
@@ -88,7 +90,7 @@ export default function Add(){
                         </View>
                         </View>
         </View>
-        )};
+        )}
 
 const styles = StyleSheet.create({
     header: {
@@ -133,4 +135,3 @@ const styles = StyleSheet.create({
 
     
 
-}
