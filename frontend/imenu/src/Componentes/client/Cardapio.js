@@ -16,7 +16,7 @@ export default function Cardapio({navigation}) {
     setPizza([])
     setHamburgueres([])
     const fetchData = async () => {
-      const response = await fetch("http://10.10.46.98:3000/api/findAllItems/")
+      const response = await fetch("http://192.168.42.55:3000/api/findAllItems/")
         try {
           const responseJson = await response.json()
           console.log("Items",responseJson.items)

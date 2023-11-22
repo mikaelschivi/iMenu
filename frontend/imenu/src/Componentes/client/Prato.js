@@ -2,25 +2,28 @@ import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, TextInput} from "react-native";
 import {useNavegation} from '@react-navigation/native';
 import { useEffect,useState} from 'react';
-var pedidos=require('./List')
+//var orders = require('./List')
+//const {plateItems} = require('./List')
 
 export default function Prato ( props,{navigation} ) {
     // url images           
     const imgAdd = "https://cdn.pixabay.com/photo/2014/04/02/10/41/button-304224_960_720.png"
     const imgLix= "https://cdn-icons-png.flaticon.com/512/5510/5510213.png"
 
+    //const pedido = orders.plateItems
+    //console.log(plateItems)
 
     return (
         <View style={styles.body}>
             <View style={styles.pedidos}>
                 <View style={styles.pedido}>
                     <View style={styles.descrition}>
-                        <Text style={{fontSize:20}}>{pedido[1].name}</Text> 
-                        <Text style={{fontSize:18,color:'#038028'}}>R$ {pedido[0].price}</Text>
+                        {/* <Text style={{fontSize:20}}>{plateItems[1].name}</Text>  */}
+                        {/* <Text style={{fontSize:18,color:'#038028'}}>R$ {pedido[0].price}</Text>  */}
                     </View>
                     <View style={styles.adiciona}>
                         <Image 
-                        source={{uri: pedido[0].image}}
+                        // source={{uri: pedido[0].image}}
                         style={styles.imgItems}
                         />
                         <View style={styles.funcionalidades}>
@@ -31,7 +34,9 @@ export default function Prato ( props,{navigation} ) {
                                 style={styles.imgIcons}
                                 /> 
                             </TouchableOpacity>
-                            
+                            <View style={styles.quant}>
+                                
+                            </View>
                             <TouchableOpacity 
                                 onPress={() => alert('Adicionado')}>
                                 <Image 
@@ -44,17 +49,30 @@ export default function Prato ( props,{navigation} ) {
                 </View>
             </View >
             <View style={styles.finalPedidos}>
-                <View style={styles.numMesa}>
-                    <Text style={{fontSize: 25, marginLeft:10, }}>Mesa: </Text>
-                    <TextInput 
+                <View style={styles.obj}>
+                    <View style={styles.numMesa}>
+                        <Text style={{fontSize: 25, marginLeft:10, }}>Mesa: </Text>
+                        <TextInput 
+                                style={{fontSize: 25}} 
+                                placeholder="mesa" 
+                                // onChangeText={setTable}
+                                // value={table}
+                                keyboardType="numeric"/>
+                    </View>
+                    <View style={styles.valPedido}>
+                        <Text style={{fontSize: 25, marginLeft:10, }}>Total: </Text>
+                        <Text
                             style={{fontSize: 25}} 
-                            placeholder="mesa" 
-                            onChangeText={setTable}
-                            value={table}
-                            keyboardType="numeric"/>
+                            placeholder="valor" 
+                            // onChangeText={setTable}
+                            // value={table}
+                            keyboardType="numeric">
+                            </Text>
+                    </View>
                 </View>
                 <TouchableOpacity style={styles.bttnFin}
-                    onPress={() => finishOrder()}>
+                    // onPress={}
+                    >
                     <Text style={styles.text_bttnFin}>Finalizar</Text>
                 </TouchableOpacity>
             </View>
@@ -89,7 +107,7 @@ const styles = StyleSheet.create({
     },
     adiciona:{
         flex:1/4,
-        marginRight:14,
+        marginRight:50,
         marginTop: 10,
         justifyContent:"space-between",
         marginBottom:15,
@@ -111,7 +129,7 @@ const styles = StyleSheet.create({
     imgIcons: {
         width:30, 
         height:30, 
-        borderRadius:15
+        borderRadius:15,
     },
     imgItems: {
         width:80, 
@@ -147,5 +165,28 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems:"center",
         marginBottom:15
+    },
+    valPedido: {
+        width:180, 
+        height:65, 
+        borderRadius:20, 
+        backgroundColor:"#b5bdbb",
+        flexDirection: "row",
+        alignItems:"center",
+        marginBottom:15,
+        marginLeft: 10
+    },
+    obj: {
+        flexDirection: 'row'
+    },
+    quant: {
+        width: 40, 
+        height: 40, 
+        borderRadius:5, 
+        backgroundColor:"#b5bdbb",
+        alignItems:"center",
+        marginBottom:15,
+        marginLeft: 10,
+        marginRight: 10
     },
 })

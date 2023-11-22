@@ -8,32 +8,36 @@ export default function List(props,{navigation}){
     const imgInfo= "https://cdn-icons-png.flaticon.com/512/3444/3444393.png"
 
     const quatity = 1 //getItemQuantity(id)
-    const [plateItems,setPlateItems] = useState([{
-        id : String,
-        quantity : Number
-        }
-    ])
-    
-    function sendOrder () {
-        if (plateItems.length === 0){
-            setPlateItems({
-                id : props.data.id,
-                quantity : 1             
-            })
-            return plateItems
-        }
-        else{
-            //setOrder(order => [...order, props.data])
-            setPlateItems(plateItems => [...plateItems, {
-                id : props.data._id,
-                quantity : 1             
-            }])
-            console.log("Pedido foi :",plateItems)
-            return plateItems
-        }
-    }
+    const [plateItems,setPlateItems] = useState([])
+        //id : String,
+        //quantity : Number
+        //}
+    //])
+    const [item,setItem] = useState('')
+        
+    // function sendOrder (item) {
+    //     console.log("Pedido  :", props.data._id)
+    //     //setOrder(order => [...order, props.data])
+    //     setPlateItems(plateItems => [...plateItems, {
+    //         id : item
+    //         //quantity : 1             
+    //     }])
+    //     console.log("Pedido depois :",plateItems)
+    // }
     //module.exports.pedido=pedido;
     
+    const sendOrder = (event) => {
+        event.preventDefault()
+        setPlateItems(plateItems => [...plateItems,{
+            id : props.data._id,
+            name : props.data.name,
+            price : props.data.price,
+            img : props.data.image
+        }])
+        console.log("Pedido depois :",plateItems)
+    }
+    module.exports = plateItems
+
     return((
         <View style={styles.container}>
             <View style={styles.descrition}>
@@ -54,9 +58,9 @@ export default function List(props,{navigation}){
                         style={styles.imgIcons}
                         /> 
                     </TouchableOpacity>
-                    <Text style={{fontSize:18,color:'#038028'}}>{quatity}</Text>
+                    {/* <Text style={{fontSize:18,color:'#038028'}}>{quatity}</Text> */}
                     <TouchableOpacity 
-                        onPress={() => sendOrder()}>
+                        onPress={sendOrder}>
                         <Image 
                         source={{uri: imgAdd}}
                         style={styles.imgIcons}
@@ -66,7 +70,7 @@ export default function List(props,{navigation}){
             </View>
         </View >
     ))
-}}
+}
 
 
 const styles = StyleSheet.create({
