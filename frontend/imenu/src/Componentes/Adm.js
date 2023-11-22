@@ -82,9 +82,11 @@ const styles = StyleSheet.create({
     bodyLogo:{
         alignItems: "center",
         justifyContent: "center",
-        width: "100%",
+        width: 250,
         backgroundColor: "#277C9D",
-        height: "35%",
+        height: 250,
+        borderRadius: 20,
+        marginTop: 20,
       },
       logo: {
         width: 220,

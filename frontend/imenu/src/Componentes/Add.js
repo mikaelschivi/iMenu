@@ -11,6 +11,38 @@ export default function Add(){
         const [ingredients,setIngredients] = useState([''])
         const [classe, setClasse] = useState('')
 
+        async function addToBD(){
+
+            let response = await fetch("http://192.168.0.4/api/createItem", {
+                method: "POST",
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                  },
+                body: JSON.stringify({
+                    name:  name,
+                    price: price,
+                    ingredients: ingredients,
+                    classe: classe,
+                }),
+            })
+        
+            try {
+                const resposta = await response.json()
+                return (
+                    
+                    console.log(resposta)
+                )
+                
+            }
+        
+            catch (error) {
+                console.log(error)
+              }
+              setName('')
+              setPrice('')
+              setIngredients([])
+              setClasse('')
     
         return(
 
@@ -41,7 +73,7 @@ export default function Add(){
 
 
                     <TouchableOpacity style={styles.bottom}
-                    onPress={() => addToBD({name: name, classe: classe, ingredients: ingredients, price: price})}>
+                    onPress={() => addToBD()}>
                             
                     <Text style={styles.text_a}>Adicionar</Text>
                     </TouchableOpacity>
@@ -96,35 +128,7 @@ const styles = StyleSheet.create({
 })
 
 
-async function addToBD(lanche){
-    setName('')
-    setClasse('')
-    setIngredients('')
-    setPrice('')
 
-    var dadoPost = JSON.stringify(
-        
-    )
-    const response = await fetch("https://192.168.0.4/api/createItem", {
-        method: "POST",
-        headers: {
-            'Content-Type': 'application/json',
-          },
-        body: JSON.stringify(lanche),
-    })
-
-    try {
-        const resposta = await response.json()
-        return (
-            
-            console.log(resposta)
-        )
-        
-    }
-
-    catch (error) {
-        console.log(error)
-      }
 
 
     

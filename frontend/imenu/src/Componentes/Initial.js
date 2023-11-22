@@ -1,7 +1,5 @@
 import React from 'react';
 import { Text, View, Image, StyleSheet, TouchableOpacity} from 'react-native';
-import Admin from './Adm';
-import Cardapio from './Cardapio';
 
 export default function Initial({navigation}) {
     
@@ -69,9 +67,11 @@ const styles = StyleSheet.create({
   bodyLogo:{
     alignItems: "center",
     justifyContent: "center",
-    width: "100%",
-    height: "35%",
+    width: 250,
+    height: 250,
     backgroundColor: "#277C9D",
+    marginTop: 20,
+    borderRadius: 20,
   },
   logo: {
     width: 220,

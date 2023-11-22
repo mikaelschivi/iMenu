@@ -1,6 +1,5 @@
 import React from "react";
 import {View, Text, StyleSheet, Image, TouchableOpacity} from "react-native";
-import {useNavegation} from '@react-navigation/native';
 
 export default function List(props,{navigation}){
     
@@ -8,7 +7,7 @@ export default function List(props,{navigation}){
         <View style={styles.container}>
             <View style={styles.descrition}>
                 <Text style={{fontSize:20}}>{props.data.name}</Text>
-                <Text style={{fontSize:14}}>{props.data.ingredients}</Text> 
+                <Text style={{fontSize:14,width: "70%"}}>{props.data.ingredients}</Text> 
                 <Text style={{fontSize:18,color:'#038028'}}>{props.data.price}</Text>
             </View>
             <View style={styles.adiciona}>
