@@ -9,7 +9,7 @@ export default function Admin({navigation}) {
         <View style={styles.body}>
             <View style={styles.bodyLogo}>
             <Image style={styles.logo}
-            source={require("../../img/logo.png")}/>
+            source={require("../../../img/logo.png")}/>
             </View>
             <View style={styles.body1}>
             <View style={styles.fundo}>
@@ -79,6 +79,10 @@ const styles = StyleSheet.create({
         marginTop: 15,
 
     },
+    logo: {
+        width: 220,
+        height: 220,
+    },
     bodyLogo:{
         alignItems: "center",
         justifyContent: "center",
@@ -93,3 +97,13 @@ const styles = StyleSheet.create({
         height: 220,
       }
   })
+
+//   bodyLogo:{
+//     alignItems: "center",
+//     justifyContent: "center",
+//     width: "55%",
+//     height: "25%",
+//     backgroundColor: "#277C9D",
+//     borderRadius: 40,
+//     marginTop: "20%"
+//   },
