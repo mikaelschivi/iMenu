@@ -9,20 +9,6 @@ export default function Prato ( props,{navigation} ) {
     const imgAdd = "https://cdn.pixabay.com/photo/2014/04/02/10/41/button-304224_960_720.png"
     const imgLix= "https://cdn-icons-png.flaticon.com/512/5510/5510213.png"
 
-    const [table,setTable] = useState('')
-    const pedido = pedidos.pedido
-    // const order = pedidos.order
-    console.log("Pedido recebido:", pedido)
-
-    // Finaliza e envia o pedido e a mesa para a cozinha
-    function finishOrder () {
-        //setOrder(order => [ ]);
-        alert('Seu pedido foi realizado')
-        setTable([''])
-        return 
-    }
-    // module.exports.order=order;
-    // module.exports.table=table;
 
     return (
         <View style={styles.body}>

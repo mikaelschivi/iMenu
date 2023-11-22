@@ -15,12 +15,6 @@ export default function List(props,{navigation}){
     ])
     
     function sendOrder () {
-        setOrder(order => [...order, props.data]);
-        console.log("Dado:",props.data.name)
-        console.log(order)
-        return order
-
-    function sendOrder () {
         if (plateItems.length === 0){
             setPlateItems({
                 id : props.data.id,
