@@ -8,7 +8,10 @@ import Adm from './src/Componentes/admin/Adm';
 import Initial from "./src/Componentes/Initial";
 import Add from "./src/Componentes/admin/Add";
 import Verify from "./src/Componentes/admin/Verify";
-import Delete from "./src/Componentes/admin/Delete"
+import Delete from "./src/Componentes/admin/Delete";
+import Hamburguer from "./src/Componentes/admin/Hamburguer";
+import Pizza from "./src/Componentes/admin/Pizza";
+import Bebida from "./src/Componentes/admin/Bebida";
 
 
 const Stack = createNativeStackNavigator();
@@ -57,6 +60,21 @@ function MyStack() {
         <Stack.Screen 
           name="Delete"
           component={Delete}
+          options={{ statusBarColor:"#277C9D"}}>
+        </Stack.Screen>
+        <Stack.Screen 
+          name="Hamburguer"
+          component={Hamburguer}
+          options={{ statusBarColor:"#277C9D"}}>
+        </Stack.Screen>
+        <Stack.Screen 
+          name="Pizza"
+          component={Pizza}
+          options={{ statusBarColor:"#277C9D"}}>
+        </Stack.Screen>
+        <Stack.Screen 
+          name="Bebida"
+          component={Bebida}
           options={{ statusBarColor:"#277C9D"}}>
         </Stack.Screen>
       </Stack.Navigator>

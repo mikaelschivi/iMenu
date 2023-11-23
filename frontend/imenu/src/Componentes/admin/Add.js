@@ -13,32 +13,23 @@ export default function Add(){
 
         async function addToBD(name,price,ingredients,classe){
 
-            let response = await fetch("http://10.229.8.119/api/createItem", {
+            const data = {
+                name:  String(name),
+                price: Number(price),
+                ingredients: ingredients,
+                classe: String(classe),
+                image: "http"
+            }
+
+            fetch("http://192.168.0.4:3000/api/createItem", {
                 method: "POST",
                 headers: {
-                    Accept: 'application/json',
                     'Content-Type': 'application/json',
                   },
-                body: JSON.stringify({
-                    name:  name,
-                    price: price,
-                    ingredients: ingredients,
-                    class: classe,
-                    image: "http"
-                }),
+                body: JSON.stringify(data),
             })
         
-            try {
-                let resposta = await response.json()
-                return (
-                    console.log(resposta)
-                )
-                
-            }
-        
-            catch (error) {
-                console.log(error)
-              }
+            .then((response) => response.json)
               setName('')
               setPrice('')
               setIngredients([])
@@ -54,15 +45,18 @@ export default function Add(){
                         <TextInput 
                             style={styles.textInput} 
                             placeholder=" Nome" 
+                            autoCapitalize = "words"
                             onChangeText={setName}
                             value={name}/>
                             <TextInput 
-                            style={styles.textInput} 
+                            style={styles.textInput}
+                            autoCapitalize = "words"
                             onChangeText={setClasse}
                             value={classe}
                             placeholder=" Classe"/>
                         <TextInput 
                             style={styles.textInput}
+                            autoCapitalize = "words"
                             placeholder=" Ingridientes"
                             onChangeText={setIngredients}
                             value={ingredients}/>

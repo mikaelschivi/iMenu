@@ -3,7 +3,7 @@ import {StyleSheet, Text, View,TouchableOpacity, Image,FlatList, ScrollView, But
 import { useEffect,useState } from 'react';
 import List from "./List";
 
-export default function Verificar() {
+export default function Verificar({navigation}) {
 
      // url images
     const imgBackground = "https://moinhoglobo.com.br/wp-content/uploads/2019/05/16-hamburguer.jpeg"
@@ -18,18 +18,18 @@ export default function Verificar() {
     setHamburgueres([])
     setBebidas([])
     const fetchData = async () => {
-      const response = await fetch("http://192.168.0.4:3000/api/findAllItems/")
+      const response = await fetch("http://192.168.0.4:3000/api/findAllItems")
         try {
           const responseJson = await response.json()
           //console.log(responseJson.items)
           for (let i = 0; i < responseJson.items.length; i++) {
-            if (responseJson.items[i].class == "pizza") {
+            if (responseJson.items[i].classe == "pizza") {
               setPizza(pizza => [...pizza, responseJson.items[i]]);
             }
-            else if (responseJson.items[i].class == "hamburguer") {
+            else if (responseJson.items[i].classe == "hamburguer") {
               setHamburgueres(hamburgueres => [...hamburgueres, responseJson.items[i]]);
             }
-            else if (responseJson.items[i].class == "bebida") {
+            else if (responseJson.items[i].classe == "Bebida") {
                 setHamburgueres(bebidas => [...bebidas, responseJson.items[i]]);
             }
           }
@@ -45,42 +45,41 @@ export default function Verificar() {
   return (
     <View style={styles.view1}>   
       {/* View da imagem de cabecalho */}
-      <ImageBackground source={{uri:imgBackground}}
+      {/* <ImageBackground source={{uri:imgBackground}}
          style={styles.image1}>
         
-      </ImageBackground>
+      </ImageBackground> */}
       {/* Options*/}
       <View style={styles.view2}>
           <ScrollView horizontal={true}>
             <Text style={styles.options}>
               Todos</Text>
-              <Text style={styles.options}>Hamburguers</Text>
-              <Text style={styles.options}>Pizzas</Text>
-              <Text style={styles.options}>Bebidas</Text>
-          </ScrollView>
-      </View>
+              <TouchableOpacity onPress={() => navigation.navigate('Hamburguer')}><Text style={styles.options}>Hamburguers</Text></TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate('Pizza')}><Text style={styles.options}>Pizzas</Text></TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate('Bebida')}><Text style={styles.options}>Bebidas</Text></TouchableOpacity>
+          </ScrollView> 
+       </View>
       {/* Items*/}
       <View style={styles.view3}>
-        <ScrollView style={styles.viewScroll}>
           <Text style={styles.titulo}>Pizzas</Text>
           <FlatList data={pizza}
           showsVerticalScrollIndicator={false}
-          keyExtractor={(item) => item.id}
-          renderItem={({item})=> <List data={item} />} 
+          renderItem={({item})=> <List data={item}/>}
+          keyExtractor={item => item.id}
           />
-          <Text style={styles.titulo}>Hamburguers</Text>
-          <FlatList data={hamburgueres}
+          <Text style={styles.titulo}>Hamburguers</Text> 
+           <FlatList data={hamburgueres}
           showsVerticalScrollIndicator={false}
           keyExtractor={(item) => item.id}
           renderItem={({item})=> <List data={item} />} 
           />
           <Text style={styles.titulo}>Bebidas</Text>
-          {/* <FlatList data={bebidas}
+           <FlatList data={bebidas}
           showsVerticalScrollIndicator={false}
           keyExtractor={(item) => item.id}
           renderItem={({item})=> <List data={item} />}
-          /> */}
-        </ScrollView>
+          />
+
       </View>
     </View> 
   );
@@ -136,4 +135,3 @@ const styles = StyleSheet.create({
     paddingTop:10
   },
 })
-
