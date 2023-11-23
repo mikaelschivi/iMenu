@@ -13,7 +13,7 @@ const modelSchema = new mongoose.Schema({
         type:  Array, 
         required: true
     },
-    class : {
+    classe : {
         type: String,
         required: true
     },
