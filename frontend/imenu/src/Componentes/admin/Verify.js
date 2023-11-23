@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View,TouchableOpacity, Image,FlatList, ScrollView, Button, ImageBackground, TextInput} from 'react-native';
 import { useEffect,useState } from 'react';
-import List from "../List";
+import List from "./List";
 
 export default function Verificar() {
 

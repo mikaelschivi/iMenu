@@ -10,35 +10,40 @@ export default function Add(){
         const [price,setPrice] = useState('')
         const [ingredients,setIngredients] = useState('')
         const [classe, setClasse] = useState('')
-        const addToBD = (name,price,ingredients,classe) =>{
+
+        async function addToBD(name,price,ingredients,classe){
+
+            let response = await fetch("http://10.229.8.119/api/createItem", {
+                method: "POST",
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                  },
+                body: JSON.stringify({
+                    name:  name,
+                    price: price,
+                    ingredients: ingredients,
+                    class: classe,
+                    image: "http"
+                }),
+            })
         
-            const add = {
-                "name": String(name),
-                "price": Number(price),
-                "ingredients": [ingredients],
-                "classe": String(classe),
-                "image": "http" 
+            try {
+                let resposta = await response.json()
+                return (
+                    console.log(resposta)
+                )
+                
             }
-    
-            const requestOptions = {
-                method: 'POST',
-                headers: {'Content-Type' : 'application/json'},
-                body: JSON.stringify(add)
-            };
-            fetch('http://192.168.0.4:3000/api/createItem', requestOptions)
-                .then(response => response.json())
-                setName('')
-                setPrice('')
-                setIngredients('')
-                setClasse('')
-            
-            // return(console.log({ 
-            //     name: name,
-            //     price: price,
-            //     ingredients: ingredients,
-            //     classe: classe,
-            //     image: "http" }))
-              return(console.log(requestOptions.body))
+        
+            catch (error) {
+                console.log(error)
+              }
+              setName('')
+              setPrice('')
+              setIngredients([])
+              setClasse('')
+        
             }
     
         return(
