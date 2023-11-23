@@ -8,11 +8,11 @@ export default function List(props,{navigation}){
     const imgInfo= "https://cdn-icons-png.flaticon.com/512/3444/3444393.png"
 
     const quatity = 1 //getItemQuantity(id)
-    const [plateItems,setPlateItems] = useState([])
+    const [plateItems,setPlateItems] = useState([''])
         //id : String,
         //quantity : Number
         //}
-    //])
+    //
     const [item,setItem] = useState('')
         
     // function sendOrder (item) {
@@ -26,8 +26,8 @@ export default function List(props,{navigation}){
     // }
     //module.exports.pedido=pedido;
     
-    const sendOrder = (event) => {
-        event.preventDefault()
+    const sendOrder = () => {
+        //event.preventDefault()
         setPlateItems(plateItems => [...plateItems,{
             id : props.data._id,
             name : props.data.name,

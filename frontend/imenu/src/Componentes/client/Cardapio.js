@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View,TouchableOpacity, Image,FlatList, ScrollView, VirtualizedList, ImageBackground,} from 'react-native';
+import { StyleSheet, Text, View,TouchableOpacity, Image,FlatList, ScrollView, VirtualizedList, ImageBackground, SafeAreaView} from 'react-native';
 import { useEffect,useState} from 'react';
 import List from "./List";
 
@@ -16,7 +16,7 @@ export default function Cardapio({navigation}) {
     setPizza([])
     setHamburgueres([])
     const fetchData = async () => {
-      const response = await fetch("http://192.168.42.55:3000/api/findAllItems/")
+      const response = await fetch("http://10.229.11.54:3000/api/findAllItems/")
         try {
           const responseJson = await response.json()
           console.log("Items",responseJson.items)
@@ -57,7 +57,8 @@ export default function Cardapio({navigation}) {
       </View>
       {/* Items*/}
       <View style={styles.view3}>
-        <ScrollView style={styles.viewScroll}>
+        {/* <ScrollView style={styles.viewScroll}> */}
+        <SafeAreaView style={{flex: 1}}>
           <Text style={styles.titulo}>Pizzas</Text>
           <FlatList data={pizza}
             showsVerticalScrollIndicator={false}
@@ -76,7 +77,8 @@ export default function Cardapio({navigation}) {
             keyExtractor={(item) => item.id}
             renderItem={({item})=> <List data={item} />}
           /> */}
-        </ScrollView>
+        {/* </ScrollView> */}
+        </SafeAreaView>
       </View>
     </View> 
   );
@@ -93,7 +95,7 @@ const styles = StyleSheet.create({
     fontSize: 22, 
     color:"white",
     alignItems:"center",  
-    justifyItems:"center",
+    // justifyItems:"center",
     marginLeft:10,
     marginTop:6,
   },

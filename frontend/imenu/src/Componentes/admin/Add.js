@@ -13,7 +13,7 @@ export default function Add(){
 
         async function addToBD(name,price,ingredients,classe){
 
-            let response = await fetch("http://10.229.8.119/api/createItem", {
+            let response = await fetch("http://10.229.11.54/api/createItem", {
                 method: "POST",
                 headers: {
                     Accept: 'application/json',
