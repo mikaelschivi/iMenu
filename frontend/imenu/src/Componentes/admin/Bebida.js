@@ -35,7 +35,9 @@ export default function Bebida() {
                 keyExtractor={(item) => item.id}
                 renderItem={({item})=> <List data={item} />} 
                 />
+        
             </View>
+
         </View>
     );
 }

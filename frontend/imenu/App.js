@@ -8,7 +8,6 @@ import Adm from './src/Componentes/admin/Adm';
 import Initial from "./src/Componentes/Initial";
 import Add from "./src/Componentes/admin/Add";
 import Verify from "./src/Componentes/admin/Verify";
-import Delete from "./src/Componentes/admin/Delete";
 import Hamburguer from "./src/Componentes/admin/Hamburguer";
 import Pizza from "./src/Componentes/admin/Pizza";
 import Bebida from "./src/Componentes/admin/Bebida";
@@ -55,11 +54,6 @@ function MyStack() {
         <Stack.Screen 
           name="Verify"
           component={Verify}
-          options={{ statusBarColor:"#277C9D"}}>
-        </Stack.Screen>
-        <Stack.Screen 
-          name="Delete"
-          component={Delete}
           options={{ statusBarColor:"#277C9D"}}>
         </Stack.Screen>
         <Stack.Screen 

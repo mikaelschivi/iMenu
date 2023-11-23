@@ -43,95 +43,99 @@ export default function Verificar({navigation}) {
 
 
   return (
-    <View style={styles.view1}>   
-      {/* View da imagem de cabecalho */}
-      {/* <ImageBackground source={{uri:imgBackground}}
-         style={styles.image1}>
-        
-      </ImageBackground> */}
-      {/* Options*/}
-      <View style={styles.view2}>
-          <ScrollView horizontal={true}>
-            <Text style={styles.options}>
-              Todos</Text>
-              <TouchableOpacity onPress={() => navigation.navigate('Hamburguer')}><Text style={styles.options}>Hamburguers</Text></TouchableOpacity>
-              <TouchableOpacity onPress={() => navigation.navigate('Pizza')}><Text style={styles.options}>Pizzas</Text></TouchableOpacity>
-              <TouchableOpacity onPress={() => navigation.navigate('Bebida')}><Text style={styles.options}>Bebidas</Text></TouchableOpacity>
-          </ScrollView> 
-       </View>
-      {/* Items*/}
-      <View style={styles.view3}>
-          <Text style={styles.titulo}>Pizzas</Text>
-          <FlatList data={pizza}
-          showsVerticalScrollIndicator={false}
-          renderItem={({item})=> <List data={item}/>}
-          keyExtractor={item => item.id}
-          />
-          <Text style={styles.titulo}>Hamburguers</Text> 
-           <FlatList data={hamburgueres}
-          showsVerticalScrollIndicator={false}
-          keyExtractor={(item) => item.id}
-          renderItem={({item})=> <List data={item} />} 
-          />
-          <Text style={styles.titulo}>Bebidas</Text>
-           <FlatList data={bebidas}
-          showsVerticalScrollIndicator={false}
-          keyExtractor={(item) => item.id}
-          renderItem={({item})=> <List data={item} />}
-          />
 
+    <View style={styles.fundo}>
+      <View style={styles.bodyLogo}>
+            <Image style={styles.logo}
+            source={require("../../../img/logo.png")}/>
       </View>
-    </View> 
+    <TouchableOpacity style={styles.bottom} onPress={() => navigation.navigate('Hamburguer')}>
+      
+        <Text style={styles.text_a}>Hamburgueres</Text>
+      
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.bottom} onPress={() => navigation.navigate('Pizza')}>
+      
+        <Text style={styles.text_a}>Pizzas</Text> 
+
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.bottom} onPress={() => navigation.navigate('Bebida')}>
+      
+        <Text style={styles.text_a}>Bebidas</Text> 
+
+      </TouchableOpacity>
+
+
+        </View>
   );
 }
 
 
 const styles = StyleSheet.create({
-  titulo:{
-    fontWeight: 'bold',
-    marginLeft: 17,
-    marginBottom: 10,
-    fontSize: 25,
+  body: {
+      flex:1, 
+      alignItems: "center",
+      backgroundColor:'#90B7C1',
+    },
+  body1: {
+      flex:2,
+      justifyContent: "flex-start",
+      backgroundColor:"#90B7C1",
+      flexDirection: "column",
+      marginTop: 20,
   },
-  options: {
-    fontSize: 22, 
-    color:"white",
-    alignItems:"center",  
-    justifyItems:"center",
-    marginRight:10,
-    marginTop:10,
+  header: {
+      height:50,
+      alignItems: "center",
+      justifyContent:"center",
+      backgroundColor: "#277C9D",
+      borderRadius:5,
   },
-  image1: {
-    width:414,
-    height:150, 
-    alignItems:"flex-end", 
-    backgroundColor: '#90B7C1'
+  fundo:{
+      marginLeft:40,
+      marginRight:40,
+      alignItems: "center",
   },
-  imagePrato: {
-    width:100,
-    height:50,
-    marginTop:20,
-    marginRight:10
+  textInput: {
+      marginTop:10,
+      fontSize: 20,
+      borderRadius:10,
+      backgroundColor: "#277C9D",
+      height: 50,
+      width:300,
   },
-  view1: {
-    flex:1, 
-    alignItems:"center"
+  bottom: {
+      backgroundColor: "#277C9D",
+      marginTop: 15,
+      width: 250,
+      height: 90,
+      borderRadius: 20,
+      justifyContent: "center",
+      alignItems: "center",   
   },
-  view2: {
-    width:414 , 
-    height: 60,
-    alignItems:"center", 
-    backgroundColor: "#277C9D",
+  text_a:{
+      fontWeight: 'bold',
+      fontSize: 25,
+
   },
-  view3: {
-    flex:1,
-    width:414,
-    height:49, 
-    backgroundColor:"white"
+  logo: {
+      width: 220,
+      height: 220,
   },
-  viewScroll: {
-    flex:1,
-    backgroundColor:"#90B7C1", 
-    paddingTop:10
-  },
+  bodyLogo:{
+      alignItems: "center",
+      justifyContent: "center",
+      width: 250,
+      backgroundColor: "#277C9D",
+      height: 250,
+      borderRadius: 20,
+      marginTop: 20,
+      marginBottom: "15%"
+    },
+    logo: {
+      width: 220,
+      height: 220,
+    }
 })

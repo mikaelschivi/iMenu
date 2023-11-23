@@ -24,6 +24,22 @@ export default function List(props,{navigation}){
     //     console.log("Pedido depois :",plateItems)
     // }
     //module.exports.pedido=pedido;
+
+        async function delete_item(id_item){
+            const id = id_item
+            const url = "http://192.168.0.4:3000/api/deleteItemById/" + id
+            fetch(url, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+            .then(response => {
+                if(!response.ok){
+                    console.log("Deu erro")
+                }
+            })   
+        }
     
     const sendOrder = () => {
         //event.preventDefault()
@@ -41,7 +57,12 @@ export default function List(props,{navigation}){
         <View style={styles.container}>
             <View style={styles.descrition}>
                 <Text style={{fontSize:20}}>{props.data.name}</Text>
-                <Text style={{fontSize:14, marginBottom:20}}>{props.data.ingredients}</Text> 
+                <Text style={{fontSize:14, marginBottom:20}}>{props.data.ingredients}</Text>
+                <View style={styles.delete}>
+                <TouchableOpacity onPress={() => delete_item(props.data._id)}>
+                    <Text style={{fontSize:15,color: "#FFFFFF"}}>Deletar</Text>
+                </TouchableOpacity>
+                </View> 
             </View>
             <View style={styles.imagem}>
                 <Image 
@@ -50,6 +71,7 @@ export default function List(props,{navigation}){
                 />
                 
             </View>
+            
         </View >
     ))
 }
@@ -104,5 +126,14 @@ imgItems: {
     height:"100%", 
     borderRadius:15, 
     marginLeft:4,
+},
+delete: {
+    flex:1,
+    width: "30%",
+    backgroundColor: "red",
+    borderRadius: 20,
+    alignItems: "center",
+    justifyContent: "center"
+
 }
 })
