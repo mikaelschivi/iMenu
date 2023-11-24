@@ -1,9 +1,9 @@
 import React from 'react';
 import {StyleSheet, Text, View,TouchableOpacity, Image,FlatList, ScrollView, Button, ImageBackground, TextInput} from 'react-native';
 import { useEffect,useState } from 'react';
-//import List from "./List";
+import List from "./List";
 
-export default function Verificar() {
+export default function Verificar({navigation}) {
 
      // url images
     const imgBackground = "https://moinhoglobo.com.br/wp-content/uploads/2019/05/16-hamburguer.jpeg"
@@ -18,18 +18,18 @@ export default function Verificar() {
     setHamburgueres([])
     setBebidas([])
     const fetchData = async () => {
-      const response = await fetch("http://192.168.0.4:3000/api/findAllItems/")
+      const response = await fetch("http://192.168.0.4:3000/api/findAllItems")
         try {
           const responseJson = await response.json()
           //console.log(responseJson.items)
           for (let i = 0; i < responseJson.items.length; i++) {
-            if (responseJson.items[i].class == "pizza") {
+            if (responseJson.items[i].classe == "pizza") {
               setPizza(pizza => [...pizza, responseJson.items[i]]);
             }
-            else if (responseJson.items[i].class == "hamburguer") {
+            else if (responseJson.items[i].classe == "hamburguer") {
               setHamburgueres(hamburgueres => [...hamburgueres, responseJson.items[i]]);
             }
-            else if (responseJson.items[i].class == "bebida") {
+            else if (responseJson.items[i].classe == "Bebida") {
                 setHamburgueres(bebidas => [...bebidas, responseJson.items[i]]);
             }
           }
@@ -43,97 +43,99 @@ export default function Verificar() {
 
 
   return (
-    <View style={styles.view1}>   
-      {/* View da imagem de cabecalho */}
-      <ImageBackground source={{uri:imgBackground}}
-         style={styles.image1}>
-        
-      </ImageBackground>
-      {/* Options*/}
-      <View style={styles.view2}>
-          <ScrollView horizontal={true}>
-            <Text style={styles.options}>
-              Todos</Text>
-              <Text style={styles.options}>Hamburguers</Text>
-              <Text style={styles.options}>Pizzas</Text>
-              <Text style={styles.options}>Bebidas</Text>
-          </ScrollView>
+
+    <View style={styles.fundo}>
+      <View style={styles.bodyLogo}>
+            <Image style={styles.logo}
+            source={require("../../../img/logo.png")}/>
       </View>
-      {/* Items*/}
-      <View style={styles.view3}>
-        <ScrollView style={styles.viewScroll}>
-          <Text style={styles.titulo}>Pizzas</Text>
-          <FlatList data={pizza}
-          showsVerticalScrollIndicator={false}
-          keyExtractor={(item) => item.id}
-          renderItem={({item})=> <List data={item} />} 
-          />
-          <Text style={styles.titulo}>Hamburguers</Text>
-          <FlatList data={hamburgueres}
-          showsVerticalScrollIndicator={false}
-          keyExtractor={(item) => item.id}
-          renderItem={({item})=> <List data={item} />} 
-          />
-          <Text style={styles.titulo}>Bebidas</Text>
-          {/* <FlatList data={bebidas}
-          showsVerticalScrollIndicator={false}
-          keyExtractor={(item) => item.id}
-          renderItem={({item})=> <List data={item} />}
-          /> */}
-        </ScrollView>
-      </View>
-    </View> 
+    <TouchableOpacity style={styles.bottom} onPress={() => navigation.navigate('Hamburguer')}>
+      
+        <Text style={styles.text_a}>Hamburgueres</Text>
+      
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.bottom} onPress={() => navigation.navigate('Pizza')}>
+      
+        <Text style={styles.text_a}>Pizzas</Text> 
+
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.bottom} onPress={() => navigation.navigate('Bebida')}>
+      
+        <Text style={styles.text_a}>Bebidas</Text> 
+
+      </TouchableOpacity>
+
+
+        </View>
   );
 }
 
 
 const styles = StyleSheet.create({
-  titulo:{
-    fontWeight: 'bold',
-    marginLeft: 17,
-    marginBottom: 10,
-    fontSize: 25,
+  body: {
+      flex:1, 
+      alignItems: "center",
+      backgroundColor:'#90B7C1',
+    },
+  body1: {
+      flex:2,
+      justifyContent: "flex-start",
+      backgroundColor:"#90B7C1",
+      flexDirection: "column",
+      marginTop: 20,
   },
-  options: {
-    fontSize: 22, 
-    color:"white",
-    alignItems:"center",  
-    justifyItems:"center",
-    marginRight:10,
-    marginTop:10,
+  header: {
+      height:50,
+      alignItems: "center",
+      justifyContent:"center",
+      backgroundColor: "#277C9D",
+      borderRadius:5,
   },
-  image1: {
-    width:414,
-    height:150, 
-    alignItems:"flex-end", 
-    backgroundColor: '#90B7C1'
+  fundo:{
+      marginLeft:40,
+      marginRight:40,
+      alignItems: "center",
   },
-  imagePrato: {
-    width:100,
-    height:50,
-    marginTop:20,
-    marginRight:10
+  textInput: {
+      marginTop:10,
+      fontSize: 20,
+      borderRadius:10,
+      backgroundColor: "#277C9D",
+      height: 50,
+      width:300,
   },
-  view1: {
-    flex:1, 
-    alignItems:"center"
+  bottom: {
+      backgroundColor: "#277C9D",
+      marginTop: 15,
+      width: 250,
+      height: 90,
+      borderRadius: 20,
+      justifyContent: "center",
+      alignItems: "center",   
   },
-  view2: {
-    width:414 , 
-    height: 60,
-    alignItems:"center", 
-    backgroundColor: "#277C9D",
-  },
-  view3: {
-    flex:1,
-    width:414,
-    height:49, 
-    backgroundColor:"white"
-  },
-  viewScroll: {
-    flex:1,
-    backgroundColor:"#90B7C1", 
-    paddingTop:10
-  },
-})
+  text_a:{
+      fontWeight: 'bold',
+      fontSize: 25,
 
+  },
+  logo: {
+      width: 220,
+      height: 220,
+  },
+  bodyLogo:{
+      alignItems: "center",
+      justifyContent: "center",
+      width: 250,
+      backgroundColor: "#277C9D",
+      height: 250,
+      borderRadius: 20,
+      marginTop: 20,
+      marginBottom: "15%"
+    },
+    logo: {
+      width: 220,
+      height: 220,
+    }
+})
