@@ -52,18 +52,21 @@ export default function Verificar({navigation}) {
     <TouchableOpacity style={styles.bottom} onPress={() => navigation.navigate('Hamburguer')}>
       
         <Text style={styles.text_a}>Hamburgueres</Text>
-      
+        <Image style={styles.logo_bottom} source={require("../../../img/xis.png")}/>
+
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.bottom} onPress={() => navigation.navigate('Pizza')}>
       
-        <Text style={styles.text_a}>Pizzas</Text> 
+        <Text style={styles.text_a}>Pizzas</Text>
+        <Image style={styles.logo_bottom} source={require("../../../img/pizza.png")}/> 
 
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.bottom} onPress={() => navigation.navigate('Bebida')}>
       
         <Text style={styles.text_a}>Bebidas</Text> 
+        <Image style={styles.logo_bottom} source={require("../../../img/refri.png")}/>
 
       </TouchableOpacity>
 
@@ -113,11 +116,14 @@ const styles = StyleSheet.create({
       height: 90,
       borderRadius: 20,
       justifyContent: "center",
-      alignItems: "center",   
+      alignItems: "center",  
+      flexDirection: "row" 
   },
   text_a:{
+      flex: 1,
       fontWeight: 'bold',
       fontSize: 25,
+      marginLeft: 15
 
   },
   logo: {
@@ -137,5 +143,9 @@ const styles = StyleSheet.create({
     logo: {
       width: 220,
       height: 220,
-    }
+    },
+    logo_bottom: {
+      marginLeft: "10%",
+      marginRight: 10
+  },
 })
