@@ -13,12 +13,12 @@ export default function Admin({navigation}) {
             </View>
             <View style={styles.body1}>
             <View style={styles.fundo}>
-                <TouchableOpacity style={styles.bottom} onPress={() => navigation.navigate('Add')}>
+                <TouchableOpacity style={styles.bottom} onPress={() => navigation.navigate('Adicionar Produto')}>
                     <Text style={styles.text_a}>Adicionar</Text>  
                     <Image style={styles.logo_bottom} source={require("../../../img/mais.png")}/>   
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.bottom} onPress={() => navigation.navigate('Verify')}>
+                <TouchableOpacity style={styles.bottom} onPress={() => navigation.navigate('Ver os Produtos')}>
                     <Text style={styles.text_a}>Verificar</Text>
                     <Image style={styles.logo_bottom} source={require("../../../img/lupa.png")}/>
                 </TouchableOpacity>

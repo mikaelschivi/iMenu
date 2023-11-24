@@ -34,7 +34,10 @@ function MyStack() {
           name="Adm" 
           component={Adm} 
           options={{ headerShown: true
-                  ,statusBarColor:"#277C9D"}}>
+                  ,headerStyle: {
+                    backgroundColor: '#277C9D',
+                  },
+                  headerTintColor: '#fff'}}>
         </Stack.Screen>
         <Stack.Screen 
           name="Prato"
@@ -47,29 +50,44 @@ function MyStack() {
           options={{ statusBarColor:"#277C9D"}}>
         </Stack.Screen> 
         <Stack.Screen 
-          name="Add"
+          name="Adicionar Produto"
           component={Add}
-          options={{ statusBarColor:"#277C9D"}}>
+          options={{ headerStyle: {
+            backgroundColor: '#277C9D',
+          },
+          headerTintColor: '#fff'}}>
         </Stack.Screen>
         <Stack.Screen 
-          name="Verify"
+          name="Ver os Produtos"
           component={Verify}
-          options={{ statusBarColor:"#277C9D"}}>
+          options={{ headerStyle: {
+            backgroundColor: '#277C9D',
+          },
+          headerTintColor: '#fff'}}>
         </Stack.Screen>
         <Stack.Screen 
           name="Hamburguer"
           component={Hamburguer}
-          options={{ statusBarColor:"#277C9D"}}>
+          options={{ headerStyle: {
+            backgroundColor: '#277C9D',
+          },
+          headerTintColor: '#fff'}}>
         </Stack.Screen>
         <Stack.Screen 
           name="Pizza"
           component={Pizza}
-          options={{ statusBarColor:"#277C9D"}}>
+          options={{ headerStyle: {
+            backgroundColor: '#277C9D',
+          },
+          headerTintColor: '#fff'}}>
         </Stack.Screen>
         <Stack.Screen 
           name="Bebida"
           component={Bebida}
-          options={{ statusBarColor:"#277C9D"}}>
+          options={{ headerStyle: {
+            backgroundColor: '#277C9D',
+          },
+          headerTintColor: '#fff'}}>
         </Stack.Screen>
       </Stack.Navigator>
   );
