@@ -15,11 +15,12 @@ export default function Admin({navigation}) {
             <View style={styles.fundo}>
                 <TouchableOpacity style={styles.bottom} onPress={() => navigation.navigate('Add')}>
                     <Text style={styles.text_a}>Adicionar</Text>  
-                    <Image source={require('C:\Users\vinim\Desktop\iMenu\meu_clone\frontend\imenu\img\pngwing.com.png')}/>   
+                    <Image style={styles.logo_bottom} source={require("../../../img/mais.png")}/>   
                 </TouchableOpacity>
 
                 <TouchableOpacity style={styles.bottom} onPress={() => navigation.navigate('Verify')}>
                     <Text style={styles.text_a}>Verificar</Text>
+                    <Image style={styles.logo_bottom} source={require("../../../img/lupa.png")}/>
                 </TouchableOpacity>
 
                 </View>
@@ -64,17 +65,20 @@ const styles = StyleSheet.create({
     bottom: {
         backgroundColor: "#277C9D",
         marginTop: 15,
-        width:300,
-        height:100,
+        width:250,
+        height:90,
         borderRadius: 20,
-        justifyContent: "flex-start",
-        alignItems: "center",   
+        justifyContent: "center",
+        alignItems: "center",  
+        flexDirection: "row" 
     },
     text_a:{
         fontWeight: 'bold',
-        fontSize: 20,
-        marginTop: 15,
+        fontSize: 25,
 
+    },
+    logo_bottom: {
+        marginLeft: "10%"
     },
     logo: {
         width: 220,

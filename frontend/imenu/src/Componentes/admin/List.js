@@ -80,17 +80,16 @@ export default function List(props,{navigation}){
 const styles = StyleSheet.create({
 container:{
     flex:1,
-    height:150,
+    height:200,
     backgroundColor:"#E9E9E9",
     marginBottom:8,
     borderRadius:15,
     flexDirection:"row",
-    justifyContent:"space-between",
+    justifyContent:"space-evenly",
 },
 descrition:{
     flex:3/4,
     padding:24,
-    justifyContent:"space-between",
     flexDirection:"colum",
     alignItems:"flex-left",
     
@@ -110,11 +109,11 @@ funcionalidades:{
 },
 button:{
     width:100,
-    height:30,
+    height:"25%",
     backgroundColor:"#04446C",
     borderRadius:50,
     alignItems:"center",
-    justifyContent:"center"
+    justifyContent:"center",
 },
 imgIcons: {
     width:30, 
@@ -129,7 +128,7 @@ imgItems: {
 },
 delete: {
     flex:1,
-    width: "30%",
+    width: 150,
     backgroundColor: "red",
     borderRadius: 20,
     alignItems: "center",
