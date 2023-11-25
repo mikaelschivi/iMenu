@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View,TouchableOpacity, Image,FlatList, ScrollView, Button, ImageBackground, TextInput} from 'react-native';
+import {StyleSheet, View, FlatList,} from 'react-native';
 import { useEffect,useState } from 'react';
 import List from "./List";
 
@@ -10,7 +10,7 @@ export default function Hamburguer() {
     useEffect(() => {
         setHamburgueres([])
         const fetchData = async () => {
-          const response = await fetch("http://192.168.0.4:3000/api/findAllItems")
+          const response = await fetch("http://192.168.42.107:3000/api/findAllItems")
             try {
               const responseJson = await response.json()
               //console.log(responseJson.items)
@@ -27,15 +27,14 @@ export default function Hamburguer() {
           fetchData();
       }, []);
 
+
     return (
-        <View>      
-            <View>
-                <FlatList data={hamburgueres}
-                showsVerticalScrollIndicator={false}
-                keyExtractor={(item) => item.id}
-                renderItem={({item})=> <List data={item} />} 
-                />
-            </View>
+        <View style={styles.container}>   
+          <FlatList data={hamburgueres}
+          showsVerticalScrollIndicator={false}
+          keyExtractor={(item) => item.id}
+          renderItem={({item})=> <List data={item} />} 
+          />
         </View>
     );
 }
@@ -48,4 +47,9 @@ const styles = StyleSheet.create({
       marginBottom: 10,
       fontSize: 25,
     },
+    container:{
+      flex:1,
+      height: "100%",
+      backgroundColor: "#90B7C1",
+  },
   })

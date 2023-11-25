@@ -3,55 +3,22 @@ import {View, Text, StyleSheet, Image, TouchableOpacity} from "react-native";
 import {useNavegation ,navigate} from '@react-navigation/native';
 
 export default function List(props,{navigation}){
-    // url images           
     
-
-    const quatity = 1 //getItemQuantity(id)
-    const [plateItems,setPlateItems] = useState([''])
-        //id : String,
-        //quantity : Number
-        //}
-    //
-    const [item,setItem] = useState('')
-        
-    // function sendOrder (item) {
-    //     console.log("Pedido  :", props.data._id)
-    //     //setOrder(order => [...order, props.data])
-    //     setPlateItems(plateItems => [...plateItems, {
-    //         id : item
-    //         //quantity : 1             
-    //     }])
-    //     console.log("Pedido depois :",plateItems)
-    // }
-    //module.exports.pedido=pedido;
-
-        async function delete_item(id_item){
-            const id = id_item
-            const url = "http://192.168.0.4:3000/api/deleteItemById/" + id
-            fetch(url, {
-                method: "DELETE",
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            })
-            .then(response => {
-                if(!response.ok){
-                    console.log("Deu erro")
-                }
-            })   
-        }
-    
-    const sendOrder = () => {
-        //event.preventDefault()
-        setPlateItems(plateItems => [...plateItems,{
-            id : props.data._id,
-            name : props.data.name,
-            price : props.data.price,
-            img : props.data.image
-        }])
-        console.log("Pedido depois :",plateItems)
+    async function delete_item(id_item){
+        const id = id_item
+        const url = "http://192.168.42.107:3000/api/deleteItemById/" + id
+        fetch(url, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        .then(response => {
+            if(!response.ok){
+                console.log("Deu erro")
+            }
+        })   
     }
-    module.exports = plateItems
 
     return((
         <View style={styles.container}>
@@ -69,9 +36,7 @@ export default function List(props,{navigation}){
                 source={{uri: props.data.image}}
                 style={styles.imgItems}
                 />
-                
             </View>
-            
         </View >
     ))
 }
@@ -81,11 +46,12 @@ const styles = StyleSheet.create({
 container:{
     flex:1,
     height: 170,
-    backgroundColor:"#E9E9E9",
-    marginBottom:8,
+    backgroundColor: "#E9E9E9",
+    marginTop:8,
     flexDirection:"row",
     justifyContent:"space-evenly",
     backgroundColor: "#277C9D",
+    borderRadius:20,
 },
 descrition:{
     flex:3/4,

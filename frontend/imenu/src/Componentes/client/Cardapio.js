@@ -10,22 +10,26 @@ export default function Cardapio({navigation}) {
 
   const [pizza,setPizza] = useState([])
   const [hamburgueres,setHamburgueres] = useState([])
-  
+  const [bebidas,setBebidas] = useState([])
+
   //Get com fetch
   useEffect(() => {
     setPizza([])
     setHamburgueres([])
     const fetchData = async () => {
-      const response = await fetch("http://192.168.42.55:3000/api/findAllItems/")
+      const response = await fetch("http://192.168.42.107:3000/api/findAllItems/")
         try {
           const responseJson = await response.json()
-          console.log("Items",responseJson.items)
+          //console.log("Items",responseJson.items)
           for (let i = 0; i < responseJson.items.length; i++) {
-            if (responseJson.items[i].class == "pizza") {
+            if (responseJson.items[i].classe == "Pizza") {
               setPizza(pizza => [...pizza, responseJson.items[i]]);
             }
-            else if (responseJson.items[i].class == "hamburguer") {
+            else if (responseJson.items[i].classe == "Hamburguer") {
               setHamburgueres(hamburgueres => [...hamburgueres, responseJson.items[i]]);
+            }
+            else if (responseJson.items[i].classe == "Bebida") {
+              setBebidas(bebidas => [...bebidas, responseJson.items[i]]);
             }
           }
         }
@@ -35,30 +39,24 @@ export default function Cardapio({navigation}) {
     }
       fetchData();
   }, []);
-
+  console.log("bebida", bebidas)
 
   return (
     <View style={styles.view1}>   
-      {/* View da imagem de cabecalho */}
       <ImageBackground source={{uri:imgBackground}}
          style={styles.image1}>
-        {/* Go to Prato */}
         <TouchableOpacity 
           onPress={() => navigation.navigate('Prato')}>
           <Image style={styles.imagePrato}  source={{uri:imgPrato}}/>
           </TouchableOpacity>
       </ImageBackground>
-      {/* Options*/}
       <View style={styles.view2}>
           <ScrollView horizontal={true}>
             <Text style={styles.options}>
               Todos      Hamburguers      Pizzas      Bebidas</Text>
           </ScrollView>
       </View>
-      {/* Items*/}
       <View style={styles.view3}>
-        {/* <ScrollView style={styles.viewScroll}> */}
-        <SafeAreaView style={{flex: 1}}>
           <Text style={styles.titulo}>Pizzas</Text>
           <FlatList data={pizza}
             showsVerticalScrollIndicator={false}
@@ -72,13 +70,11 @@ export default function Cardapio({navigation}) {
             renderItem={({item})=> <List data={item} />} 
           />
           <Text style={styles.titulo}>Bebidas</Text>
-          {/* <FlatList data={bebidas}
+          <FlatList data={bebidas}
             showsVerticalScrollIndicator={false}
             keyExtractor={(item) => item.id}
             renderItem={({item})=> <List data={item} />}
-          /> */}
-        {/* </ScrollView> */}
-        </SafeAreaView>
+          />
       </View>
     </View> 
   );

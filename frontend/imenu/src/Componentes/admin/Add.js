@@ -21,7 +21,7 @@ export default function Add(){
                 image: "http"
             }
 
-            fetch("http://192.168.0.4:3000/api/createItem", {
+            fetch("http://192.168.42.107:3000/api/createItem", {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json',

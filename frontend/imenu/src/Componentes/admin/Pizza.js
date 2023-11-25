@@ -10,7 +10,7 @@ export default function Pizza() {
     useEffect(() => {
         setPizza([])
         const fetchData = async () => {
-          const response = await fetch("http://192.168.0.4:3000/api/findAllItems")
+          const response = await fetch("http://192.168.42.107:3000/api/findAllItems")
             try {
               const responseJson = await response.json()
               //console.log(responseJson.items)
@@ -28,14 +28,12 @@ export default function Pizza() {
       }, []);
 
     return (
-        <View>      
-            <View>
-                <FlatList data={pizza}
-                showsVerticalScrollIndicator={false}
-                keyExtractor={(item) => item.id}
-                renderItem={({item})=> <List data={item} />} 
-                />
-            </View>
+        <View style={styles.container}>      
+          <FlatList data={pizza}
+          showsVerticalScrollIndicator={false}
+          keyExtractor={(item) => item.id}
+          renderItem={({item})=> <List data={item} />} 
+          />
         </View>
     );
 }
@@ -48,4 +46,9 @@ const styles = StyleSheet.create({
       marginBottom: 10,
       fontSize: 25,
     },
+    container:{
+      flex:1,
+      height: "100%",
+      backgroundColor: "#90B7C1",
+  },
   })
