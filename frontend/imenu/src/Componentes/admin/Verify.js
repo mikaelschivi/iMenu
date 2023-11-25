@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   bottom: {
       backgroundColor: "#277C9D",
       marginTop: 15,
-      width: 250,
+      width: 280,
       height: 90,
       borderRadius: 20,
       justifyContent: "center",
@@ -63,6 +63,8 @@ const styles = StyleSheet.create({
   },
   logo_bottom: {
     marginLeft: "10%",
-    marginRight: 10
+    marginRight: 10,
+    width: 35,
+    height: 35,
   },
 })

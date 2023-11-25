@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View,TouchableOpacity, Image,FlatList, ScrollView, VirtualizedList, ImageBackground, SafeAreaView} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image,FlatList, ScrollView, ImageBackground} from 'react-native';
 import { useEffect,useState} from 'react';
 import List from "./List";
 
@@ -16,6 +16,7 @@ export default function Cardapio({navigation}) {
   useEffect(() => {
     setPizza([])
     setHamburgueres([])
+    setBebidas([])
     const fetchData = async () => {
       const response = await fetch("http://192.168.42.107:3000/api/findAllItems/")
         try {
@@ -39,7 +40,6 @@ export default function Cardapio({navigation}) {
     }
       fetchData();
   }, []);
-  console.log("bebida", bebidas)
 
   return (
     <View style={styles.view1}>   
@@ -57,6 +57,7 @@ export default function Cardapio({navigation}) {
           </ScrollView>
       </View>
       <View style={styles.view3}>
+        <ScrollView style={styles.viewScroll}>
           <Text style={styles.titulo}>Pizzas</Text>
           <FlatList data={pizza}
             showsVerticalScrollIndicator={false}
@@ -75,6 +76,7 @@ export default function Cardapio({navigation}) {
             keyExtractor={(item) => item.id}
             renderItem={({item})=> <List data={item} />}
           />
+          </ScrollView>
       </View>
     </View> 
   );
