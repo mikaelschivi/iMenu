@@ -2,15 +2,15 @@ import React from 'react';
 import {StyleSheet, View, FlatList,} from 'react-native';
 import { useEffect,useState } from 'react';
 import List from "./List";
+const URL = require('../../Componentes/api/URL')
 
 export default function Hamburguer() {
-
     const [hamburgueres,setHamburgueres] = useState([])
 
     useEffect(() => {
         setHamburgueres([])
         const fetchData = async () => {
-          const response = await fetch("http://192.168.42.107:3000/api/findAllItems")
+          const response = await fetch(URL + "findAllItems")
             try {
               const responseJson = await response.json()
               //console.log(responseJson.items)

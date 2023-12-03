@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import {View, Text, StyleSheet, Image, TouchableOpacity} from "react-native";
 import {useNavegation ,navigate} from '@react-navigation/native';
+const URL = require('../../Componentes/api/URL')
 
 export default function List(props,{navigation}){
     
     async function delete_item(id_item){
         const id = id_item
-        const url = "http://192.168.42.107:3000/api/deleteItemById/" + id
+        const url = URL + "deleteItemById/" + id
         fetch(url, {
             method: "DELETE",
             headers: {

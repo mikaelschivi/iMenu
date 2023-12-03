@@ -1,58 +1,38 @@
 import React, { useState } from "react";
 import {View, Text, StyleSheet, Image, TouchableOpacity} from "react-native";
-import {useNavegation ,navigate} from '@react-navigation/native';
+import { useContext } from "react";
+import propTypes from 'prop-types'
+import AppContext from "../context/AppContext";
+import Prato from "./Prato";
 
-export default function List(props,{navigation}){
+export default function List({ data }){
     // url images           
     const imgAdd = "https://cdn.pixabay.com/photo/2014/04/02/10/41/button-304224_960_720.png"
     const imgInfo= "https://cdn-icons-png.flaticon.com/512/3444/3444393.png"
 
-    const quatity = 1 //getItemQuantity(id)
-    const [plateItems,setPlateItems] = useState([''])
-        //id : String,
-        //quantity : Number
-        //}
-    //
-    const [item,setItem] = useState('')
-        
-    // function sendOrder (item) {
-    //     console.log("Pedido  :", props.data._id)
-    //     //setOrder(order => [...order, props.data])
-    //     setPlateItems(plateItems => [...plateItems, {
-    //         id : item
-    //         //quantity : 1             
-    //     }])
-    //     console.log("Pedido depois :",plateItems)
-    // }
-    //module.exports.pedido=pedido;
+    const {name, price, ingredients, image, _id} = data
+
+    const { order, setOrder } = useContext(AppContext)
     
     const sendOrder = () => {
-        //event.preventDefault()
-        setPlateItems(plateItems => [...plateItems,{
-            id : props.data._id,
-            name : props.data.name,
-            price : props.data.price,
-            img : props.data.image
-        }])
-        console.log("Pedido depois :",plateItems)
-    }
-    module.exports = plateItems
+        setOrder([...order, data])
+    }   
 
     return((
         <View style={styles.container}>
             <View style={styles.descrition}>
-                <Text style={{fontSize:20}}>{props.data.name}</Text>
-                <Text style={{fontSize:14}}>{props.data.ingredients}</Text> 
-                <Text style={{fontSize:18,color:'#038028'}}>R$ {props.data.price}</Text>
+                <Text style={{fontSize:20}}>{name}</Text>
+                <Text style={{fontSize:14}}>{ingredients}</Text> 
+                <Text style={{fontSize:18,color:'#038028'}}>R$ {price}</Text>
             </View>
             <View style={styles.adiciona}>
                 <Image 
-                source={{uri: props.data.image}}
+                source={{uri: image}}
                 style={styles.imgItems}
                 />
                 <View style={styles.funcionalidades}>
                     <TouchableOpacity 
-                        onPress={ () => navigation.navigate('Prato')}>
+                        onPress={() => navigation.navigate('Prato')}>
                         <Image 
                         source={{uri: imgInfo}}
                         style={styles.imgIcons}

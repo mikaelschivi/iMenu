@@ -1,10 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image,FlatList, ScrollView, ImageBackground} from 'react-native';
-import { useEffect,useState} from 'react';
+import { StyleSheet, Text, View, TouchableOpacity, Image,FlatList, ScrollView, ImageBackground, SafeAreaView} from 'react-native';
+import { useEffect,useState, useContext} from 'react';
 import List from "./List";
+const URL = require('../../Componentes/api/URL')
 
 export default function Cardapio({navigation}) {
-  // url images 
+  // images's url 
   const imgPrato = "https://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c55e.png"
   const imgBackground = "https://moinhoglobo.com.br/wp-content/uploads/2019/05/16-hamburguer.jpeg"
 
@@ -12,16 +13,15 @@ export default function Cardapio({navigation}) {
   const [hamburgueres,setHamburgueres] = useState([])
   const [bebidas,setBebidas] = useState([])
 
-  //Get com fetch
+  //Get with fetch
   useEffect(() => {
     setPizza([])
     setHamburgueres([])
     setBebidas([])
     const fetchData = async () => {
-      const response = await fetch("http://192.168.42.107:3000/api/findAllItems/")
+      const response = await fetch(URL + "findAllItems/")
         try {
           const responseJson = await response.json()
-          //console.log("Items",responseJson.items)
           for (let i = 0; i < responseJson.items.length; i++) {
             if (responseJson.items[i].classe == "Pizza") {
               setPizza(pizza => [...pizza, responseJson.items[i]]);
@@ -40,13 +40,13 @@ export default function Cardapio({navigation}) {
     }
       fetchData();
   }, []);
-
+  
   return (
     <View style={styles.view1}>   
       <ImageBackground source={{uri:imgBackground}}
          style={styles.image1}>
         <TouchableOpacity 
-          onPress={() => navigation.navigate('Prato')}>
+          onPress={() => navigation.navigate('PratoItems')}>
           <Image style={styles.imagePrato}  source={{uri:imgPrato}}/>
           </TouchableOpacity>
       </ImageBackground>
@@ -61,19 +61,19 @@ export default function Cardapio({navigation}) {
           <Text style={styles.titulo}>Pizzas</Text>
           <FlatList data={pizza}
             showsVerticalScrollIndicator={false}
-            keyExtractor={(item) => item.id}
+            keyExtractor={(item) => item._id}
             renderItem={({item})=> <List data={item} />} 
           />
           <Text style={styles.titulo}>Hamburguers</Text>
           <FlatList data={hamburgueres}
             showsVerticalScrollIndicator={false}
-            keyExtractor={(item) => item.id}
+            keyExtractor={(item) => item._id}
             renderItem={({item})=> <List data={item} />} 
           />
           <Text style={styles.titulo}>Bebidas</Text>
           <FlatList data={bebidas}
             showsVerticalScrollIndicator={false}
-            keyExtractor={(item) => item.id}
+            keyExtractor={(item) => item._id}
             renderItem={({item})=> <List data={item} />}
           />
           </ScrollView>
@@ -81,7 +81,6 @@ export default function Cardapio({navigation}) {
     </View> 
   );
 }
-
 
 const styles = StyleSheet.create({
   titulo:{
@@ -93,7 +92,6 @@ const styles = StyleSheet.create({
     fontSize: 22, 
     color:"white",
     alignItems:"center",  
-    // justifyItems:"center",
     marginLeft:10,
     marginTop:6,
   },
@@ -128,6 +126,6 @@ const styles = StyleSheet.create({
   viewScroll: {
     flex:1,
     backgroundColor:"#90B7C1", 
-    paddingTop:10
+    paddingTop:15
   },
 })
