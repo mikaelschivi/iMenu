@@ -12,6 +12,7 @@ import Hamburguer from "./src/Componentes/admin/Hamburguer";
 import Pizza from "./src/Componentes/admin/Pizza";
 import Bebida from "./src/Componentes/admin/Bebida";
 import Provider from "./src/Componentes/context/Provider";
+import Cozinha from "./src/Componentes/admin/Cozinha"
 
 const Stack = createNativeStackNavigator();
 
@@ -56,6 +57,15 @@ function MyStack() {
         <Stack.Screen 
           name="Inform"
           component={Inform}
+          options={{ headerStyle: {
+            backgroundColor: '#277C9D',
+            },
+            headerTintColor: '#fff'
+            ,statusBarColor:"#277C9D"}}>
+        </Stack.Screen> 
+        <Stack.Screen 
+          name="Fila de Pedidos"
+          component={Cozinha}
           options={{ headerStyle: {
             backgroundColor: '#277C9D',
             },

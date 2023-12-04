@@ -23,6 +23,11 @@ export default function Admin({navigation}) {
                     <Image style={styles.logo_bottom} source={require("../../../img/lupa.png")}/>
                 </TouchableOpacity>
 
+                <TouchableOpacity style={styles.bottom} onPress={() => navigation.navigate('Fila de Pedidos')}>
+                    <Text style={styles.text_a}>Cozinha</Text>
+                    <Image style={styles.logo_bottom} source={require("../../../img/cheff.png")}/>
+                </TouchableOpacity>
+
                 </View>
             </View>
         </View>
@@ -78,7 +83,7 @@ const styles = StyleSheet.create({
 
     },
     logo_bottom: {
-        marginLeft: "10%"
+        marginLeft: "10%",
     },
     logo: {
         width: 220,
