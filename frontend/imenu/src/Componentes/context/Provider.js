@@ -4,10 +4,13 @@ import propTypes from 'prop-types'
 
 function Provider({children}) {
     const [order,setOrder] = useState([])
+    const [ordersDone,setOrdersDone] = useState([])
 
     const value = {
         order,
-        setOrder
+        setOrder,
+        ordersDone,
+        setOrdersDone
     }
 
     return ( 

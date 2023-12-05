@@ -71,7 +71,7 @@ function MyStack() {
             },
             headerTintColor: '#fff'
             ,statusBarColor:"#277C9D"}}>
-        </Stack.Screen> 
+        </Stack.Screen>
         <Stack.Screen 
           name="Adicionar Produto"
           component={Add}

@@ -5,12 +5,19 @@ import AppContext from '../context/AppContext';
 import propTypes from 'prop-types'
 import ListOrder from './ListOrder';
 
-export default function Prato ({data}) {
-    const { order, setOrders } = useContext(AppContext)
-
+export default function PratoItems ({data}) {
+    const { order, setOrder, ordersDone, setOrdersDone } = useContext(AppContext)
+    
     const totalPrice = order.reduce((acc, order) => {
         return order.price + acc
     }, 0)
+
+    const finishOrder = async function ()  {
+        await setOrdersDone(...ordersDone,order)
+        await setOrder([ ])
+        console.log("Pedido total: ", ordersDone)
+        console.log("Pedido atual: ", order)
+    }
 
     return (
         <View style={styles.body}>
@@ -42,7 +49,7 @@ export default function Prato ({data}) {
                     </View>
                 </View>
                     <TouchableOpacity style={styles.bttnFin}
-                        // onPress={}
+                        onPress={finishOrder}
                         >
                         <Text style={styles.text_bttnFin}>Finalizar</Text>
                     </TouchableOpacity>

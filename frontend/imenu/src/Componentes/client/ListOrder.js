@@ -11,6 +11,7 @@ export default function ListOrder({ data }){
     const {name, price, ingredients, image, _id} = data
     const quant = 1
 
+    // nao finalizada
     const handleRemoveItem = () => {
         const updateItems = order.filter((item) => item._id !== _id)
         setOrders(updateItems)
