@@ -15,8 +15,10 @@ export default function PratoItems ({data}) {
     const finishOrder = async function ()  {
         await setOrdersDone(...ordersDone,order)
         await setOrder([ ])
-        console.log("Pedido total: ", ordersDone)
-        console.log("Pedido atual: ", order)
+        console.log("order: ", order)
+
+        // console.log("Pedido total: ", ordersDone)
+        // console.log("Pedido atual: ", order)
     }
 
     return (

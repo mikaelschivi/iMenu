@@ -21,24 +21,22 @@ export default function ListCozinha({ data }){
             setColor('#219D1F')
         )
     }
-
-
-
-
-
+    
     return((
         <View style={styles.pedido}>
             <View style={styles.lanches}>
             <View style={styles.lanche}>
+                <View style={styles.qtd}>
+                    <Text style={{ fontSize: 20}}>1</Text>
+                </View>
                 <View style={styles.nomes}>
                     <Text style={{ fontSize: 24}}>{name}</Text>
                 </View>
-                <View style={styles.qtd}>
+                <View style={styles.img}>
                     <Image 
                     source={{uri: image}}
                     style={styles.imgItems}
                     />
-                    <Text style={{ fontSize: 20}}>5</Text>
                 </View>
                 </View>
             </View>
@@ -68,7 +66,6 @@ const styles = StyleSheet.create({
         backgroundColor: "#90B7C1",
         height: '100%'
     },
-
     pedido: {
         flexDirection: "column",
         backgroundColor: "#FFFFFF",
@@ -90,29 +87,37 @@ const styles = StyleSheet.create({
     lanches:{
         flexDirection: "collum",
         justifyContent: "center",
+        marginTop: "5%",
     },
     nomes:{
         flex: 1,
         width: 397,
         height: 123,
         alignItems: "flex-start",
+        justifyContent: "space-around",
+        flexDirection: "row",
+        marginRight: 40
     },
-    qtd:{
+    img:{
         width: 40,
-        height: 34,
-        backgroundColor: "#D6DFD9",
+        height: 36,
         alignItems: "center",
         justifyContent: "center",
         borderRadius: 10,
         borderColor: "#000000",
         borderBottomWidth: 2.5,
-        borderTopWidth: 2.5,
+        borderTopWidth: 20,
         borderLeftWidth: 2.5,
         borderRightWidth: 2.5,
+        marginTop:10,
+        marginBottom:10,
+        marginRight:20
     },
     mesa:{
         flex: 1,
         justifyContent: "flex-end",
+        marginTop:20,
+        marginBottom:10,
     },
     lanche:{
         flexDirection: "row",
@@ -120,7 +125,8 @@ const styles = StyleSheet.create({
         width: 360,
         height: 30,
         marginLeft: "5%",
-        marginRight: "5%"
+        marginRight: "5%",
+        marginTop: "5%"
     },
     imgItems: {
         width:80, 

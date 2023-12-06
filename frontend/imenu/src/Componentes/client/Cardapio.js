@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image,FlatList, ScrollView, ImageBackground, SafeAreaView} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image,FlatList, ScrollView, ImageBackground} from 'react-native';
 import { useEffect,useState, useContext} from 'react';
 import List from "./List";
 const URL = require('../../Componentes/api/URL')

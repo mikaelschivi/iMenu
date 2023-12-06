@@ -1,22 +1,40 @@
 import React, { useState } from "react";
 import {View, Text, StyleSheet, Image, TouchableOpacity} from "react-native";
-import { useContext } from "react";
+import { useContext, useEffect} from "react";
+import { useNavigation } from '@react-navigation/native'
 import propTypes from 'prop-types'
 import AppContext from "../context/AppContext";
-import Prato from "./Prato";
 
-export default function List({ data }){
+export default function List({ data}){
+    const navigation = useNavigation()
+
     // url images           
     const imgAdd = "https://cdn.pixabay.com/photo/2014/04/02/10/41/button-304224_960_720.png"
     const imgInfo= "https://cdn-icons-png.flaticon.com/512/3444/3444393.png"
 
-    const {name, price, ingredients, image, _id} = data
-
     const { order, setOrder } = useContext(AppContext)
-    
+    const {name, price, ingredients, image, _id} = data
+    const [quantia, setQuantia] = useState(0);
+
     const sendOrder = () => {
-        setOrder([...order, data])
-    }   
+        const objetoEncontrado = order.find(objeto => objeto.id === _id);
+        if (objetoEncontrado){
+            console.log("ja ta dentro")
+            setQuantia(prevA => prevA, + 1)
+            return
+        }
+        //console.log(_id)
+        setOrder(order => [...order, data])
+        setQuantia(prevA => prevA, + 1)
+    }
+    
+    // Aqui simulamos um valor obtido através de um processo assíncrono, como uma requisição a um servidor
+    useEffect(() => {
+        // Simulando uma chamada assíncrona que retorna dados após 1 segundo
+        setTimeout(() => {
+            console.log("Pedido: ", order)
+        }, 2000); // Exemplo de 1 segundo de atraso para simular um processo assíncrono
+    },[quantia,order]);
 
     return((
         <View style={styles.container}>
@@ -32,13 +50,13 @@ export default function List({ data }){
                 />
                 <View style={styles.funcionalidades}>
                     <TouchableOpacity 
-                        onPress={() => navigation.navigate('Prato')}>
+                        onPress={() => navigation.navigate('PratoItems')}>
                         <Image 
                         source={{uri: imgInfo}}
                         style={styles.imgIcons}
                         /> 
                     </TouchableOpacity>
-                    {/* <Text style={{fontSize:18,color:'#038028'}}>{quatity}</Text> */}
+                    <Text style={{fontSize:18,color:'#038028'}}>{quantia}</Text>
                     <TouchableOpacity 
                         onPress={sendOrder}>
                         <Image 
