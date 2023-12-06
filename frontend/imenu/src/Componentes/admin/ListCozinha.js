@@ -94,9 +94,9 @@ const styles = StyleSheet.create({
         width: 397,
         height: 123,
         alignItems: "flex-start",
-        justifyContent: "space-around",
         flexDirection: "row",
-        marginRight: 40
+        marginRight: 40,
+        marginLeft: 20
     },
     img:{
         width: 40,
@@ -133,5 +133,12 @@ const styles = StyleSheet.create({
         height:65, 
         borderRadius:15, 
         marginLeft:4,
+    },
+    qtd: {
+        backgroundColor: "#a3acad",
+        width: 30,
+        height: 30,
+        alignItems: "center",
+        borderRadius: 10
     }
 })
