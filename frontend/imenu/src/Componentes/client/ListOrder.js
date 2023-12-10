@@ -1,32 +1,34 @@
-import React, { useState, useContext} from "react";
+import React, { useState, useContext, useEffect} from "react";
 import {View, Text, StyleSheet, Image, TouchableOpacity} from "react-native";
 import AppContext from "../context/AppContext";
 
-export default function ListOrder({ data }){
+export default function ListOrder({data}){
     // url images           
     const imgAdd = "https://cdn.pixabay.com/photo/2014/04/02/10/41/button-304224_960_720.png"
     const imgLix= "https://cdn-icons-png.flaticon.com/512/5510/5510213.png"
 
     const { order, setOrders } = useContext(AppContext)
-    const {name, price, ingredients, image, _id} = data
-    const quant = 1
+    const {_id, nome, preco, ingredientes, imagem, quantidade} = data
 
     // nao finalizada
     const handleRemoveItem = () => {
         const updateItems = order.filter((item) => item._id !== _id)
         setOrders(updateItems)
     }
+    useEffect(() => {
+        console.log("quantidade = ",quantidade)
+    },[quantidade]);
 
     return((
         <View style={styles.container}>
                 <View style={styles.descrition}>
-                    <Text style={{fontSize:20}}>{name}</Text>
-                    <Text style={{fontSize:14}}>{ingredients}</Text> 
-                    <Text style={{fontSize:18,color:'#038028'}}>R$ {price}</Text>
+                    <Text style={{fontSize:20}}>{nome}</Text>
+                    <Text style={{fontSize:14}}>{ingredientes}</Text> 
+                    <Text style={{fontSize:18,color:'#038028'}}>R$ {preco}</Text>
                 </View>
                 <View style={styles.adiciona}>
                     <Image 
-                    source={{uri: image}}
+                    source={{uri: imagem}}
                     style={styles.imgItems}
                     />
                     <View style={styles.funcionalidades}>
@@ -38,7 +40,7 @@ export default function ListOrder({ data }){
                             /> 
                         </TouchableOpacity>
                         <View style={styles.quant}>
-                            <Text>{quant}</Text>
+                            <Text>{quantidade + 1}</Text>
                         </View>
                         <TouchableOpacity 
                             onPress={() => alert('Adicionado')}>

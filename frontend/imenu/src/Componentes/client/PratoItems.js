@@ -6,16 +6,19 @@ import propTypes from 'prop-types'
 import ListOrder from './ListOrder';
 
 export default function PratoItems ({data}) {
-    const { order, setOrder, ordersDone, setOrdersDone } = useContext(AppContext)
+    const { order, setOrder, ordersDone, setOrdersDone, mesa, setMesa, tables, setTables} = useContext(AppContext)
     
     const totalPrice = order.reduce((acc, order) => {
-        return order.price + acc
+        return order.preco + acc
     }, 0)
 
     const finishOrder = async function ()  {
         await setOrdersDone(...ordersDone,order)
+        await setTables(...tables,mesa)
         await setOrder([ ])
-        console.log("order: ", order)
+        await setMesa([ ])
+        order.preco = 0
+        console.log("order: ", order.preco)
 
         // console.log("Pedido total: ", ordersDone)
         // console.log("Pedido atual: ", order)
@@ -36,9 +39,9 @@ export default function PratoItems ({data}) {
                         <Text style={{fontSize: 25, marginLeft:10, }}>Mesa: </Text>
                         <TextInput 
                             style={{fontSize: 25}} 
+                            onChangeText={setMesa}
+                            value={mesa}
                             placeholder="mesa" 
-                            // onChangeText={setTable}
-                            // value={table}
                             keyboardType="numeric"/>
                     </View>
                     <View style={styles.valPedido}>
@@ -51,8 +54,7 @@ export default function PratoItems ({data}) {
                     </View>
                 </View>
                     <TouchableOpacity style={styles.bttnFin}
-                        onPress={finishOrder}
-                        >
+                        onPress={finishOrder}>
                         <Text style={styles.text_bttnFin}>Finalizar</Text>
                     </TouchableOpacity>
                 </View> 

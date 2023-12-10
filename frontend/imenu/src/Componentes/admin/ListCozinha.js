@@ -5,11 +5,11 @@ import AppContext from "../context/AppContext";
 export default function ListCozinha({ data }){
     const [text,setText] = useState('AGUARDANDO PREPARAÇÃO')
     const [color,setColor] = useState("#DB0000")
-    const {name, price, ingredients, image} = data
+    //const {name, price, ingredients, image} = data
 
-    
+    const {_id, nome, preco, ingredientes, imagem, quantidade} = data
 
-    const {ordersDone, setOrdersDone } = useContext(AppContext)
+    const {ordersDone, setOrdersDone, tables } = useContext(AppContext)
     console.log("Pedidos na fila: ", ordersDone)
 
     const finalizado = () =>{
@@ -27,21 +27,21 @@ export default function ListCozinha({ data }){
             <View style={styles.lanches}>
             <View style={styles.lanche}>
                 <View style={styles.qtd}>
-                    <Text style={{ fontSize: 20}}>1</Text>
+                    <Text style={{ fontSize: 20}}>{quantidade + 1}</Text>
                 </View>
                 <View style={styles.nomes}>
-                    <Text style={{ fontSize: 24}}>{name}</Text>
+                    <Text style={{ fontSize: 24}}>{nome}</Text>
                 </View>
                 <View style={styles.img}>
                     <Image 
-                    source={{uri: image}}
+                    source={{uri: imagem}}
                     style={styles.imgItems}
                     />
                 </View>
                 </View>
             </View>
             <View style={styles.mesa}>
-                <Text style={{ fontSize: 20}}>MESA 1</Text>
+                <Text style={{ fontSize: 20}}>MESA {tables}</Text>
             </View>
             <View style={styles.view_bottom}>   
                 <TouchableOpacity style={

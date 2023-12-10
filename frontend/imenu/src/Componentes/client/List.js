@@ -1,51 +1,64 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import {View, Text, StyleSheet, Image, TouchableOpacity} from "react-native";
-import { useContext, useEffect} from "react";
 import { useNavigation } from '@react-navigation/native'
 import propTypes from 'prop-types'
 import AppContext from "../context/AppContext";
 
-export default function List({ data}){
+export default function List({ data }){
     const navigation = useNavigation()
 
     // url images           
     const imgAdd = "https://cdn.pixabay.com/photo/2014/04/02/10/41/button-304224_960_720.png"
     const imgInfo= "https://cdn-icons-png.flaticon.com/512/3444/3444393.png"
 
-    const { order, setOrder } = useContext(AppContext)
+    const { order, setOrder} = useContext(AppContext)
     const {name, price, ingredients, image, _id} = data
-    const [quantia, setQuantia] = useState(0);
+    const [amount,setAmount] = useState(0)
+    
+    const itensPedido = {
+        "_id" : _id,
+        "nome" : name,
+        "ingredientes" : ingredients,
+        "preco" : price,
+        "imagem" : image,
+        "quantidade" : amount
+    }
 
-    const sendOrder = () => {
-        const objetoEncontrado = order.find(objeto => objeto.id === _id);
-        if (objetoEncontrado){
-            console.log("ja ta dentro")
-            setQuantia(prevA => prevA, + 1)
-            return
+    const addOrder = () => {
+        for (let i = 0; i < order.length; i++) {
+            if (order[i]._id == itensPedido._id) {
+                setAmount(amount + 1)
+                console.log("Pedido",order)
+                return
+            }
         }
+        // const objetoEncontrado = order.find(objeto => objeto.id === itensPedido._id);
+        // if (objetoEncontrado){
+        //     console.log("ja ta dentro")
+        //     setAmount(amount + 1)
+        //     return
+        // }
         //console.log(_id)
-        setOrder(order => [...order, data])
-        setQuantia(prevA => prevA, + 1)
+        setOrder(order => [...order, itensPedido])
+        setAmount(amount + 1)
+        itensPedido.quantidade = amount
     }
     
-    // Aqui simulamos um valor obtido através de um processo assíncrono, como uma requisição a um servidor
     useEffect(() => {
-        // Simulando uma chamada assíncrona que retorna dados após 1 segundo
         setTimeout(() => {
-            console.log("Pedido: ", order)
-        }, 2000); // Exemplo de 1 segundo de atraso para simular um processo assíncrono
-    },[quantia,order]);
+        }, 2000);
+    },[amount,order]);
 
     return((
         <View style={styles.container}>
             <View style={styles.descrition}>
-                <Text style={{fontSize:20}}>{name}</Text>
-                <Text style={{fontSize:14}}>{ingredients}</Text> 
-                <Text style={{fontSize:18,color:'#038028'}}>R$ {price}</Text>
+                <Text style={{fontSize:20}}>{itensPedido.nome}</Text>
+                <Text style={{fontSize:14}}>{itensPedido.ingredientes}</Text> 
+                <Text style={{fontSize:18,color:'#038028'}}>R$ {itensPedido.preco}</Text>
             </View>
             <View style={styles.adiciona}>
                 <Image 
-                source={{uri: image}}
+                source={{uri: itensPedido.imagem}}
                 style={styles.imgItems}
                 />
                 <View style={styles.funcionalidades}>
@@ -56,9 +69,9 @@ export default function List({ data}){
                         style={styles.imgIcons}
                         /> 
                     </TouchableOpacity>
-                    <Text style={{fontSize:18,color:'#038028'}}>{quantia}</Text>
+                    <Text style={{fontSize:18,color:'#038028'}}>{itensPedido.quantidade}</Text>
                     <TouchableOpacity 
-                        onPress={sendOrder}>
+                        onPress={addOrder}>
                         <Image 
                         source={{uri: imgAdd}}
                         style={styles.imgIcons}
